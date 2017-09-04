@@ -1,5 +1,5 @@
 .idea
-/terrariumGame.iml
+*.iml
 .classpath
 .project
 /target
