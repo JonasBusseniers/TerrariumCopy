@@ -3,3 +3,10 @@
 .classpath
 .project
 /target
+/bin
+target
+/.idea/
+/.settings/
+/bin/
+/target/
+/.classpath
