@@ -1,18 +1,23 @@
+
 package be.vdab.terrarium;
 
-import be.vdab.enteties.Herbivore;
-import be.vdab.enteties.Organism;
+import be.vdab.entities.Herbivore;
+import be.vdab.entities.Organism;
 
 public enum Board {
 
 	INSTANCE;
-	private Organism[][] organisms;
-
-	private Board() {
-	}
-
-	private Board(Organism[][] organisms) {
-		this.organisms = organisms;
+	private static Organism[][] organisms;
+	
+	public static void main(String[] args) 
+	{
+		for (int i = 0; i < organisms.length; i++) {
+			for (int j = 0; j < organisms[i].length; j++) {
+				if (organisms[i][j] instanceof Herbivore) {
+					
+				}
+			}
+		}
 	}
 
 	public void nextDay() {
