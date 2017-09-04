@@ -43,7 +43,8 @@ public enum Board {
 		for (int i = 0; i < organisms.length; i++) {
 			for (int j = 0; j < organisms[i].length; j++) {
 				if (organisms[i][j] instanceof Herbivore) {
-					if ((j == organisms[i].length - 1) || (organisms[i][j + 1] == null)
+					if ((j == organisms[i].length - 1) || (organisms[i][j + 1] == null) // vermijdt
+																						// ArrayIndexOutOfBoundsException
 							|| organisms[i][j + 1] instanceof Carnivore) {
 						move(organisms[i][j]);
 					} else if (organisms[i][j + 1] instanceof Plant) {
