@@ -25,7 +25,7 @@ public enum Board {
 		print();
 	}
 
-	private static void print()
+	public static void print()
 	{
 		for (int i = 0; i < organisms.length; i++) {
 			for (int j = 0; j < organisms[i].length; j++) {
@@ -40,7 +40,7 @@ public enum Board {
 		System.out.println();
 	}
 
-	private static void setTestPositions() {
+	public static void setTestPositions() {
 		organisms[0][0] = new Herbivore(1, false);
 		organisms[0][1] = new Plant(1, false);
 		organisms[0][3] = new Herbivore(1, false);
@@ -49,7 +49,6 @@ public enum Board {
 		organisms[1][2] = new Plant(1, false);
 		organisms[0][0] = new Herbivore(1, false);
 		organisms[1][2] = new Plant(1, false);
-
 	}
 
 	public static void nextDay() {
