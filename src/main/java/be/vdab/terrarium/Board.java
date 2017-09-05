@@ -200,4 +200,8 @@ public enum Board {
 		// TODO Auto-generated method stub
 
 	}
+
+	public static Organism[][] getOrganisms() {
+		return organisms;
+	}
 }
