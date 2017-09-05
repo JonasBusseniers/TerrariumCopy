@@ -41,14 +41,14 @@ public enum Board {
 	}
 
 	private static void setTestPositions() {
-		organisms[0][0] = new Herbivore(1, true);
-		organisms[0][1] = new Plant(1, true);
-		organisms[0][3] = new Herbivore(1, true);
-		organisms[0][4] = new Herbivore(1, true);
-		organisms[0][0] = new Herbivore(1, true);
-		organisms[1][2] = new Plant(1, true);
-		organisms[0][0] = new Herbivore(1, true);
-		organisms[1][2] = new Plant(1, true);
+		organisms[0][0] = new Herbivore(1, false);
+		organisms[0][1] = new Plant(1, false);
+		organisms[0][3] = new Herbivore(1, false);
+		organisms[0][4] = new Herbivore(1, false);
+		organisms[0][0] = new Herbivore(1, false);
+		organisms[1][2] = new Plant(1, false);
+		organisms[0][0] = new Herbivore(1, false);
+		organisms[1][2] = new Plant(1, false);
 
 	}
 
