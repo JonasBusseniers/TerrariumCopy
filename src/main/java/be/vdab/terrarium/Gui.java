@@ -2,26 +2,36 @@ package be.vdab.terrarium;
 
 import java.util.Scanner;
 
-import be.vdab.entities.Organism;
+import be.vdab.terrarium.util.PropertiesFileTerrariumGenerator;
+import be.vdab.terrarium.util.TerrariumRenderer;
 
 public class Gui {
 
-  public static void main(String[] args)
-  {
-    Board.setTestPositions();
-    Board.print();
+	public static void main(String[] args) {
+		Board.setOrganisms(new PropertiesFileTerrariumGenerator("terrariumGame.properties").generateTerrarium());
 
-    Scanner scanner = new Scanner(System.in);
-    System.out.println("Druk op <ENTER> voor een volgende dag,\nDruk op <S> + <ENTER> om te stoppen.");
-    String invoer = scanner.nextLine();
+		TerrariumRenderer renderer = new TerrariumRenderer(Board.getOrganisms());
 
-    while (! invoer.equals("S"))
-    {
-      Board.nextDay();
-      Board.print();
+		// Board.print();
+		renderer.render();
 
-      System.out.println("Druk op <ENTER> voor een volgende dag,\nDruk op <S> + <ENTER> om te stoppen.");
-      invoer = scanner.nextLine();
-    }
-  }
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Druk op <ENTER> voor een volgende dag,\nDruk op <S> + <ENTER> om te stoppen.");
+		String invoer = scanner.nextLine();
+
+		while (!invoer.equals("S")) {
+			try {
+				Board.nextDay();
+			} catch (BoardException ex) {
+				System.out.println(ex.getMessage());
+				break;
+			}
+
+			// Board.print();
+			renderer.render();
+
+			System.out.println("Druk op <ENTER> voor een volgende dag,\nDruk op <S> + <ENTER> om te stoppen.");
+			invoer = scanner.nextLine();
+		}
+	}
 }

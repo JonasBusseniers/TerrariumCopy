@@ -10,61 +10,60 @@ import be.vdab.entities.Carnivore;
 import be.vdab.entities.Herbivore;
 import be.vdab.entities.Organism;
 import be.vdab.entities.Plant;
-import com.sun.javafx.scene.traversal.Direction;
 
 public enum Board {
 
 	INSTANCE;
-	private static final int ROW = 6;
-	private static final int COL = 6;
+	private static int ROW = 6;
+	private static int COL = 6;
+	private static final int AANTALPLANTENPERBEURT = 2;
 	private static Organism[][] organisms = new Organism[ROW][COL];
 	static int aantalOrganism = 0;
 
-	protected static void print()
-	{
-		System.out.println();
+	public static void setOrganisms(Organism[][] organisms) {
 		for (int i = 0; i < organisms.length; i++) {
 			for (int j = 0; j < organisms[i].length; j++) {
-				if (organisms[i][j] == null) {
-					System.out.print(".\t");
-				} else {
-					System.out.print(organisms[i][j].toString() + "\t");
+				if (organisms[i][j] != null) {
+					aantalOrganism++;
 				}
 			}
-			System.out.println();
 		}
-		System.out.println();
+		Board.organisms = organisms;
 	}
 
 	protected static void setTestPositions() {
-//		organisms[0][0] = new Herbivore(1, false);
-//		organisms[0][1] = new Plant(1, false);
-//		organisms[0][3] = new Herbivore(1, false);
-//		organisms[0][4] = new Herbivore(1, false);
-//		organisms[0][0] = new Herbivore(1, false);
-//		organisms[1][2] = new Plant(1, false);
-//		organisms[0][0] = new Herbivore(1, false);
-//		organisms[1][2] = new Plant(1, false);
-		organisms[0][0] = new Herbivore(1, false); 		aantalOrganism++;
-		organisms[0][1] = new Carnivore(1, false);		aantalOrganism++;
-		organisms[1][0] = new Herbivore(1, false);		aantalOrganism++;
-
-
-
+		organisms[0][0] = new Herbivore(1, false);
+		aantalOrganism++;
+		organisms[0][1] = new Plant(1, false);
+		aantalOrganism++;
+		organisms[0][3] = new Herbivore(1, false);
+		aantalOrganism++;
+		organisms[0][4] = new Herbivore(1, false);
+		aantalOrganism++;
+		organisms[2][3] = new Carnivore(1, false);
+		aantalOrganism++;
+		organisms[3][0] = new Carnivore(1, false);
+		aantalOrganism++;
+		organisms[3][1] = new Herbivore(1, false);
+		aantalOrganism++;
+		organisms[4][4] = new Herbivore(1, false);
+		aantalOrganism++;
+		// organisms[0][0] = new Herbivore(1, false); aantalOrganism++;
+		// organisms[0][1] = new Carnivore(1, false); aantalOrganism++;
+		// organisms[1][0] = new Herbivore(1, false); aantalOrganism++;
 	}
 
-	protected static void nextDay() {
+	protected static void nextDay() throws BoardException {
 
 		// Set all HasActed on false
 
 		for (int i = 0; i < organisms.length; i++) {
 			for (int j = 0; j < organisms[i].length; j++) {
-				if (organisms[i][j] instanceof Organism){
+				if (organisms[i][j] instanceof Organism) {
 					organisms[i][j].setHasActed(false);
 				}
 			}
 		}
-
 
 		// Do actions and set HasActed on true
 
@@ -78,71 +77,64 @@ public enum Board {
 						organisms[i][j].setHasActed(true);
 						if (organisms[i][j] instanceof Herbivore) {
 							if ((j == organisms[i].length - 1) || (organisms[i][j + 1] == null) // vermijdt
-								// ArrayIndexOutOfBoundsException
-								|| organisms[i][j + 1] instanceof Carnivore) {
-								move(i,j);
+							// ArrayIndexOutOfBoundsException
+							) {
+								move(i, j);
 							} else if (organisms[i][j + 1] instanceof Plant) {
-								eat(i,j,i,j+1);
+								eat(i, j, i, j + 1);
 							} else if (organisms[i][j + 1] instanceof Herbivore) {
 								mate();
 							}
 						} else if (organisms[i][j] instanceof Carnivore) {
-							if ((j == organisms[i].length - 1) || (organisms[i][j + 1] == null)
-								|| organisms[i][j + 1] instanceof Plant) {
-								move(i,j);
+							if ((j == organisms[i].length - 1) || (organisms[i][j + 1] == null)) {
+								move(i, j);
 							} else if (organisms[i][j + 1] instanceof Carnivore) {
-								fight(i,j);
+								fight(i, j);
 							} else if (organisms[i][j + 1] instanceof Herbivore) {
-								eat(i,j,i,j+1);
+								eat(i, j, i, j + 1);
 							}
 						}
 					}
 				}
 			}
 		}
-
+		// System.out.println("aantalOrg: " + aantalOrganism);
 	}
 
 	protected static void fight(int i, int j) {
-		if (organisms[i][j].getLife() < organisms[i][j+1].getLife()){
-			eat(i,j+1,i,j);
-		} else if (organisms[i][j].getLife() > organisms[i][j+1].getLife()){
-			eat(i,j,i,j+1);
+		if (organisms[i][j].getLife() < organisms[i][j + 1].getLife()) {
+			eat(i, j + 1, i, j);
+		} else if (organisms[i][j].getLife() > organisms[i][j + 1].getLife()) {
+			eat(i, j, i, j + 1);
 		}
 
 	}
 
-	protected static void mate() {
+	protected static void mate() throws BoardException {
 
-		if (aantalOrganism < ROW*COL)
-		{
+		if (aantalOrganism < organisms[0].length * organisms.length) {
 			int x;
 			int y;
 			do {
-				x = (int) (Math.random() * ROW);
-				y = (int) (Math.random() * COL);
+				x = (int) (Math.random() * organisms[0].length);
+				y = (int) (Math.random() * organisms.length);
 			} while (organisms[x][y] != null);
 			organisms[x][y] = new Herbivore(0, true);
 			aantalOrganism++;
+		} else {
+			throw new BoardException("Organism overload!");
 		}
-		else
-		{
-			System.out.println("Organism Overload;;");
-		}
-
-
-
 	}
 
 	protected static void eat(int i, int j, int i2, int j2) {
 		organisms[i][j].setLife(organisms[i][j].getLife() + organisms[i2][j2].getLife());
 		organisms[i2][j2] = null;
-
+		aantalOrganism--;
 	}
 
 	protected static void move(int i, int j) {
 		List<Direction> directionsToTry = new ArrayList<>(
-			Arrays.asList(Direction.LEFT, Direction.RIGHT, Direction.UP, Direction.DOWN));
+				Arrays.asList(Direction.LEFT, Direction.RIGHT, Direction.UP, Direction.DOWN));
 		int x;
 		int y;
 		do {
@@ -152,24 +144,19 @@ public enum Board {
 
 			int randomNum = ThreadLocalRandom.current().nextInt(0, directionsToTry.size());
 			switch (directionsToTry.get(randomNum)) {
-				case LEFT:
-					y--;
-					System.out.print("links");
-					break;
-				case RIGHT:
-					y++;
-					System.out.print("rechts");
-					break;
-				case UP:
-					x--;
-					System.out.print("up");
-					break;
-				case DOWN:
-					x++;
-					System.out.print("down");
-					break;
+			case LEFT:
+				y--;
+				break;
+			case RIGHT:
+				y++;
+				break;
+			case UP:
+				x--;
+				break;
+			case DOWN:
+				x++;
+				break;
 			}
-			System.out.print(isEmptyPosition(x, y));
 			if (isEmptyPosition(x, y)) {
 				organisms[x][y] = organisms[i][j];
 				organisms[i][j] = null;
@@ -180,7 +167,6 @@ public enum Board {
 
 			}
 		} while (!directionsToTry.isEmpty());
-		System.out.print("\n");
 	}
 
 	protected static boolean isEmptyPosition(int x, int y) {
@@ -195,13 +181,29 @@ public enum Board {
 		}
 	}
 
+	protected static void generateNewPlants() throws BoardException {
 
-	protected static void generateNewPlants() {
-		// TODO Auto-generated method stub
+		for (int i = 0; i < AANTALPLANTENPERBEURT; i++)
+
+		{
+			if (aantalOrganism < organisms[0].length * organisms.length) {
+				int x;
+				int y;
+				do {
+					x = (int) (Math.random() * organisms[0].length);
+					y = (int) (Math.random() * organisms.length);
+				} while (organisms[x][y] != null);
+				organisms[x][y] = new Plant(1, true);
+				aantalOrganism++;
+			} else {
+				throw new BoardException("Plant overload!");
+			}
+		}
 
 	}
 
-	public static Organism[][] getOrganisms() {
+	protected static Organism[][] getOrganisms() {
 		return organisms;
 	}
+
 }
