@@ -9,11 +9,11 @@ import java.io.IOException;
 import java.util.Properties;
 import java.io.InputStream;
 
-public class TerrariumGenerator {
+public class PropertiesFileTerrariumGenerator {
   Properties properties = new Properties();
   int rows, cols;
 
-  public TerrariumGenerator(String fileName) {
+  public PropertiesFileTerrariumGenerator(String fileName) {
     try (InputStream is = this.getClass().getClassLoader().getResourceAsStream(fileName) ) {
       properties.load(is);
       rows = Integer.parseInt(properties.getProperty("rows"));
