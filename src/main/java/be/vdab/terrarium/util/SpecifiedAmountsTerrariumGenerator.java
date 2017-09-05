@@ -20,7 +20,7 @@ public class SpecifiedAmountsTerrariumGenerator implements TerrariumGenerator {
 
   public void setAmountForType(Class<? extends Organism> organismType, int amount) {
     if (totalOrganisms + amount > rows * cols) {
-      throw new RuntimeException("You are trying to put to many organisms in the terrarium :(");
+      throw new RuntimeException("You are trying to put too many organisms in the terrarium :(");
     }
     amounts.put(organismType, amount);
     totalOrganisms += amount;
