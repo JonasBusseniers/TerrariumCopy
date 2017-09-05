@@ -1,4 +1,4 @@
-package be.tomvdab.terrarium.utility;
+package be.vdab.terrarium.util;
 
 import static org.junit.Assert.*;
 
