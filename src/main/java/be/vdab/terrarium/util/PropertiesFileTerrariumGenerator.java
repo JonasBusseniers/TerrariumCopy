@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.Properties;
 import java.io.InputStream;
 
-public class PropertiesFileTerrariumGenerator {
+public class PropertiesFileTerrariumGenerator implements TerrariumGenerator {
   Properties properties = new Properties();
   int rows, cols;
 
