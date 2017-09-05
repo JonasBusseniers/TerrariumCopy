@@ -14,6 +14,19 @@ public enum Board {
 	public static void main(String[] args) {
 		setTestPositions();
 
+		print();
+
+		nextDay();
+
+		print();
+
+		nextDay();
+
+		print();
+	}
+
+	private static void print()
+	{
 		for (int i = 0; i < organisms.length; i++) {
 			for (int j = 0; j < organisms[i].length; j++) {
 				if (organisms[i][j] == null) {
@@ -24,6 +37,7 @@ public enum Board {
 			}
 			System.out.println();
 		}
+		System.out.println();
 	}
 
 	private static void setTestPositions() {
@@ -38,29 +52,29 @@ public enum Board {
 
 	}
 
-	public void nextDay() {
+	public static void nextDay() {
 		generateNewPlants();
 		for (int i = 0; i < organisms.length; i++) {
 			for (int j = 0; j < organisms[i].length; j++) {
 				if (organisms[i][j] instanceof Herbivore) {
 					if ((j == organisms[i].length - 1) || (organisms[i][j + 1] == null) // vermijdt
-																						// ArrayIndexOutOfBoundsException
-							|| organisms[i][j + 1] instanceof Carnivore) {
-						move(organisms[i][j]);
+						// ArrayIndexOutOfBoundsException
+						|| organisms[i][j + 1] instanceof Carnivore) {
+						move(i,j);
 					} else if (organisms[i][j + 1] instanceof Plant) {
-						eat(organisms[i][j], organisms[i][j + 1]);
+						eat(i,j,i,j+1);
 					} else if (organisms[i][j + 1] instanceof Herbivore) {
-						mate(organisms[i][j], organisms[i][j + 1]);
+						mate();
 					}
 
 				} else if (organisms[i][j] instanceof Carnivore) {
 					if ((j == organisms[i].length - 1) || (organisms[i][j + 1] == null)
-							|| organisms[i][j + 1] instanceof Plant) {
-						move(organisms[i][j]);
+						|| organisms[i][j + 1] instanceof Plant) {
+						move(i,j);
 					} else if (organisms[i][j + 1] instanceof Carnivore) {
-						fight(organisms[i][j], organisms[i][j + 1]);
+						fight(i,j);
 					} else if (organisms[i][j + 1] instanceof Herbivore) {
-						eat(organisms[i][j], organisms[i][j + 1]);
+						eat(i,j,i,j+1);
 					}
 				}
 			}
@@ -68,27 +82,40 @@ public enum Board {
 
 	}
 
-	private void mate(Organism organism, Organism organism2) {
+	private static void fight(int i, int j) {
+		if (organisms[i][j].getLife() < organisms[i][j+1].getLife()){
+			eat(i,j+1,i,j);
+		} else if (organisms[i][j].getLife() > organisms[i][j+1].getLife()){
+			eat(i,j,i,j+1);
+		}
+
+	}
+
+	private static void mate() {
+		int x;
+		int y;
+		do {
+			x = (int) (Math.random() * 6);
+			y = (int) (Math.random() * 6);
+		} while (organisms[x][y] != null);
+		organisms[x][y] = new Herbivore(0, false);
+
+	}
+
+	private static void eat(int i, int j, int i2, int j2) {
+		organisms[i][j].setLife(organisms[i][j].getLife() + organisms[i2][j2].getLife());
+		organisms[i2][j2] = null;
+
+	}
+
+	private static void move(int i, int j) {
 		// TODO Auto-generated method stub
 
 	}
 
-	private void eat(Organism organism, Organism organism2) {
-		// TODO Auto-generated method stub
 
-	}
 
-	private void fight(Organism organism, Organism organism2) {
-		// TODO Auto-generated method stub
-
-	}
-
-	private void move(Organism organism) {
-		// TODO Auto-generated method stub
-
-	}
-
-	private void generateNewPlants() {
+	private static void generateNewPlants() {
 		// TODO Auto-generated method stub
 
 	}
