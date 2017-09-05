@@ -53,6 +53,18 @@ public enum Board {
 	}
 
 	public static void nextDay() {
+		
+		// Set all HasActed on false
+		
+		for (int i = 0; i < organisms.length; i++) {
+			for (int j = 0; j < organisms[i].length; j++) {
+				organisms[i][j].setHasActed(false);
+			}
+		}
+		
+		
+		// Do actions and set HasActed on true
+		
 		generateNewPlants();
 		for (int i = 0; i < organisms.length; i++) {
 			for (int j = 0; j < organisms[i].length; j++) {
@@ -77,6 +89,7 @@ public enum Board {
 						eat(i,j,i,j+1);
 					}
 				}
+				organisms[i][j].setHasActed(true);
 			}
 		}
 
