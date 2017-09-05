@@ -10,7 +10,6 @@ import be.vdab.entities.Carnivore;
 import be.vdab.entities.Herbivore;
 import be.vdab.entities.Organism;
 import be.vdab.entities.Plant;
-import com.sun.javafx.scene.traversal.Direction;
 
 public enum Board {
 
@@ -19,6 +18,21 @@ public enum Board {
 	private static final int COL = 6;
 	private static Organism[][] organisms = new Organism[ROW][COL];
 	static int aantalOrganism = 0;
+
+
+	protected static void main(String[] args) {
+		setTestPositions();
+
+		print();
+
+		nextDay();
+
+		print();
+
+		nextDay();
+
+		print();
+	}
 
 	protected static void print()
 	{
@@ -48,15 +62,15 @@ public enum Board {
 		organisms[0][0] = new Herbivore(1, false); 		aantalOrganism++;
 		organisms[0][1] = new Carnivore(1, false);		aantalOrganism++;
 		organisms[1][0] = new Herbivore(1, false);		aantalOrganism++;
-
-
-
+		
+		
+		
 	}
 
 	protected static void nextDay() {
-
+		
 		// Set all HasActed on false
-
+		
 		for (int i = 0; i < organisms.length; i++) {
 			for (int j = 0; j < organisms[i].length; j++) {
 				if (organisms[i][j] instanceof Organism){
@@ -64,21 +78,21 @@ public enum Board {
 				}
 			}
 		}
-
-
+		
+		
 		// Do actions and set HasActed on true
-
+		
 		generateNewPlants();
 		for (int i = 0; i < organisms.length; i++) {
 			for (int j = 0; j < organisms[i].length; j++) {
-
+				
 				if (organisms[i][j] instanceof Organism) {
 					if (!organisms[i][j].isHasActed()) {
 						// No Actions performed.. DO ACTION
 						organisms[i][j].setHasActed(true);
 						if (organisms[i][j] instanceof Herbivore) {
 							if ((j == organisms[i].length - 1) || (organisms[i][j + 1] == null) // vermijdt
-								// ArrayIndexOutOfBoundsException
+																								// ArrayIndexOutOfBoundsException
 								|| organisms[i][j + 1] instanceof Carnivore) {
 								move(i,j);
 							} else if (organisms[i][j + 1] instanceof Plant) {
@@ -113,7 +127,7 @@ public enum Board {
 	}
 
 	protected static void mate() {
-
+		
 		if (aantalOrganism < ROW*COL)
 		{
 			int x;
@@ -129,7 +143,7 @@ public enum Board {
 		{
 			System.out.println("Organism Overload;;");
 		}
-
+		
 
 
 	}
@@ -142,7 +156,7 @@ public enum Board {
 
 	protected static void move(int i, int j) {
 		List<Direction> directionsToTry = new ArrayList<>(
-			Arrays.asList(Direction.LEFT, Direction.RIGHT, Direction.UP, Direction.DOWN));
+				Arrays.asList(Direction.LEFT, Direction.RIGHT, Direction.UP, Direction.DOWN));
 		int x;
 		int y;
 		do {
@@ -152,28 +166,28 @@ public enum Board {
 
 			int randomNum = ThreadLocalRandom.current().nextInt(0, directionsToTry.size());
 			switch (directionsToTry.get(randomNum)) {
-				case LEFT:
-					y--;
-					System.out.print("links");
-					break;
-				case RIGHT:
-					y++;
-					System.out.print("rechts");
-					break;
-				case UP:
-					x--;
-					System.out.print("up");
-					break;
-				case DOWN:
-					x++;
-					System.out.print("down");
-					break;
+			case LEFT:
+				y--;
+				System.out.print("links");
+				break;
+			case RIGHT:
+				y++;
+				System.out.print("rechts");
+				break;
+			case UP:
+				x--;
+				System.out.print("up");
+				break;
+			case DOWN:
+				x++;
+				System.out.print("down");
+				break;
 			}
 			System.out.print(isEmptyPosition(x, y));
 			if (isEmptyPosition(x, y)) {
 				organisms[x][y] = organisms[i][j];
 				organisms[i][j] = null;
-
+				
 				break;
 			} else {
 				directionsToTry.remove(randomNum);
