@@ -67,8 +67,20 @@ container flexbox */
 }
 
 /* Pie chart */
+svg {
+    transform: rotate(-90deg);
+    background: yellowgreen;
+    border-radius: 50%;
+}
+
+@keyframes fillup {
+    to { stroke-dasharray: 158 158; }
+}
+
 circle {
     fill: yellowgreen;
     stroke: #655;
-    stroke-width: 30;
+    stroke-width: 50;
+    stroke-dasharray: 0 158;
+    animation: fillup 5s linear infinite;
 }
