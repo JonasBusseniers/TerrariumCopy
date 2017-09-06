@@ -25,8 +25,10 @@
 <c:url value='/custom.htm' var='new_custom_game_url'/>
 <a href='${new_custom_game_url}'>New custom game</a>
 
-<c:url value='/board.htm' var='current_game_url'/>
-<a href='${current_game_url}'>Current game</a>
+<c:if test='${not empty terrarium}'>
+  <c:url value='/board.htm' var='current_game_url'/>
+  <a href='${current_game_url}'>Current game</a>
+</c:if>
 
 <vdab:footer/>
 </body>
