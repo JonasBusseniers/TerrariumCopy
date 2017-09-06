@@ -11,17 +11,16 @@ import be.vdab.entities.Herbivore;
 import be.vdab.entities.Organism;
 import be.vdab.entities.Plant;
 
-public enum Board {
+public class Board {
 
-	INSTANCE;
 	// private static int ROW = 6;
 	// private static int COL = 6;
-	private static int AANTALPLANTENPERBEURT = 2;
-	private static Organism[][] organisms;
-	private static Organism[][] organismsTemp;
-	static int aantalOrganism = 0;
+	private int aantalPlantenPerBeurt = 2;
+	private Organism[][] organisms;
+	private Organism[][] organismsTemp;
+	private int aantalOrganism = 0;
 
-	public static void setOrganisms(Organism[][] organisms) {
+	public void setOrganisms(Organism[][] organisms) {
 		for (int i = 0; i < organisms.length; i++) {
 			for (int j = 0; j < organisms[i].length; j++) {
 				if (organisms[i][j] != null) {
@@ -29,12 +28,12 @@ public enum Board {
 				}
 			}
 		}
-		Board.organisms = organisms;
-		Board.organismsTemp = new Organism[organisms.length][organisms[0].length];
+		this.organisms = organisms;
+		this.organismsTemp = new Organism[organisms.length][organisms[0].length];
 
 	}
 
-	protected static void setTestPositions() {
+	protected void setTestPositions() {
 		organisms[0][0] = new Herbivore(1, false);
 		aantalOrganism++;
 		organisms[0][1] = new Plant(1, false);
@@ -56,7 +55,7 @@ public enum Board {
 		// organisms[1][0] = new Herbivore(1, false); aantalOrganism++;
 	}
 
-	protected static void nextDay() throws BoardException {
+	protected void nextDay() throws BoardException {
 
 		// Set all HasActed on false
 		for (int i = 0; i < organisms.length; i++) {
@@ -123,7 +122,7 @@ public enum Board {
 		// System.out.println("aantalOrg: " + aantalOrganism);
 	}
 
-	protected static void fight(int i, int j) {
+	protected void fight(int i, int j) {
 		if (organisms[i][j].getLife() < organisms[i][j + 1].getLife()) {
 			eat(i, j + 1, i, j);
 		} else if (organisms[i][j].getLife() > organisms[i][j + 1].getLife()) {
@@ -132,7 +131,7 @@ public enum Board {
 
 	}
 
-	protected static void mate() throws BoardException {
+	protected void mate() throws BoardException {
 
 		if (aantalOrganism < organisms[0].length * organisms.length) {
 			int x;
@@ -148,13 +147,13 @@ public enum Board {
 		}
 	}
 
-	protected static void eat(int i, int j, int i2, int j2) {
+	protected void eat(int i, int j, int i2, int j2) {
 		organisms[i][j].setLife(organisms[i][j].getLife() + organisms[i2][j2].getLife());
 		organisms[i2][j2] = null;
 		aantalOrganism--;
 	}
 
-	protected static void move(int i, int j) {
+	protected void move(int i, int j) {
 		List<Direction> directionsToTry = new ArrayList<>(
 				Arrays.asList(Direction.LEFT, Direction.RIGHT, Direction.UP, Direction.DOWN));
 		int x;
@@ -191,7 +190,7 @@ public enum Board {
 		} while (!directionsToTry.isEmpty());
 	}
 
-	protected static boolean isEmptyPosition(int x, int y) {
+	protected boolean isEmptyPosition(int x, int y) {
 		try {
 			if (organisms[x][y] == null && organismsTemp[x][y] == null) {
 				return true;
@@ -203,9 +202,9 @@ public enum Board {
 		}
 	}
 
-	protected static void generateNewPlants() throws BoardException {
+	protected void generateNewPlants() throws BoardException {
 
-		for (int i = 0; i < AANTALPLANTENPERBEURT; i++)
+		for (int i = 0; i < aantalPlantenPerBeurt; i++)
 
 		{
 			if (aantalOrganism < organisms[0].length * organisms.length) {
@@ -224,12 +223,12 @@ public enum Board {
 
 	}
 
-	protected static Organism[][] getOrganisms() {
+	protected Organism[][] getOrganisms() {
 		return organisms;
 	}
 
-	protected static void setAANTALPLANTENPERBEURT(int aANTALPLANTENPERBEURT) {
-		AANTALPLANTENPERBEURT = aANTALPLANTENPERBEURT;
+	protected void setAantalPlantenPerBeurt(int aantalPlantenPerBeurt) {
+		this.aantalPlantenPerBeurt = aantalPlantenPerBeurt;
 	}
 
 }

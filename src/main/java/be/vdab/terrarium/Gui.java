@@ -23,10 +23,11 @@ public class Gui {
 
 		// Board.setOrganisms(new
 		// PropertiesFileTerrariumGenerator("terrariumGame.properties").generateTerrarium());
-		Board.setOrganisms(generator.generateTerrarium());
-		Board.setAANTALPLANTENPERBEURT(1);
+		Board board = new Board();
+		board.setOrganisms(generator.generateTerrarium());
+		board.setAantalPlantenPerBeurt(1);
 
-		TerrariumRenderer renderer = new TerrariumRenderer(Board.getOrganisms());
+		TerrariumRenderer renderer = new TerrariumRenderer(board.getOrganisms());
 
 		// Board.print();
 		renderer.render();
@@ -37,7 +38,7 @@ public class Gui {
 
 		while (!invoer.equals("S")) {
 			try {
-				Board.nextDay();
+				board.nextDay();
 			} catch (BoardException ex) {
 				System.out.println(ex.getMessage());
 				break;
