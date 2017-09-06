@@ -230,5 +230,13 @@ public class Board {
 	protected void setAantalPlantenPerBeurt(int aantalPlantenPerBeurt) {
 		this.aantalPlantenPerBeurt = aantalPlantenPerBeurt;
 	}
+	
+	protected int getRow () {
+		return organisms.length;
+	}
+
+	protected int getColumn () {
+		return organisms[0].length;
+	} 
 
 }
