@@ -223,7 +223,7 @@ public class Board {
 
 	}
 
-	protected Organism[][] getOrganisms() {
+	public Organism[][] getOrganisms() {
 		return organisms;
 	}
 
@@ -231,11 +231,11 @@ public class Board {
 		this.aantalPlantenPerBeurt = aantalPlantenPerBeurt;
 	}
 	
-	protected int getRow () {
+	public int getRow () {
 		return organisms.length;
 	}
 
-	protected int getColumn () {
+	public int getColumn () {
 		return organisms[0].length;
 	} 
 
