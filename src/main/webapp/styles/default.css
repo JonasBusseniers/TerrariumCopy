@@ -1,0 +1,67 @@
+/* Body */
+body {
+    background-color: #FFFFDE;
+    color: #5A0000;
+    font-family: sans-serif;
+}
+
+
+/* Menu */
+  nav ul {
+      background-color: green;
+      padding: 0.4em 0;
+  }
+
+nav li {
+    display: inline;
+}
+
+nav li a {
+    color: white;
+    font-weight: bold;
+    padding-left: 0.5em;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+nav li a:hover {
+    color: #F7FFCC;
+}
+
+/*Terrarium raster
+container flexbox */
+  .container {
+      width: 70%;
+      margin: 0 auto;
+      display: flex;
+      flex-flow: row nowrap;
+  }
+
+/* raster flexbox */
+.raster {
+    flex: 0 0 460px;
+    display: flex;
+    flex-flow: column nowrap;
+    margin-top: 10px;
+    height: 400px;
+    margin-left: 50px;
+}
+
+/* colom */
+.raster > div {
+    flex: 1 1 auto;
+    display: flex;
+    flex-flow: row nowrap;
+    outline: 1px solid white;
+    background: silver;
+    height: 100px;
+}
+
+/* row */
+.raster > div > div {
+    flex: 1 1 auto;
+    outline: 1px solid white;
+    width: 50%;
+    text-align: center;
+    padding-top: 10px;
+}
