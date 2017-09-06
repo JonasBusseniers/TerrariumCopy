@@ -16,13 +16,16 @@
 
 <h1>${titel}</h1>
 
-<c:url value='/board.htm' var='new_random_game_url'/>
+<c:url value='/board.htm' var='new_random_game_url'>
+  <c:param name='new' value='1'/>
+</c:url>
+
 <a href='${new_random_game_url}'>New random game</a>
 
 <c:url value='/custom.htm' var='new_custom_game_url'/>
-<a href='${new_random_game_url}'>New custom game</a>
+<a href='${new_custom_game_url}'>New custom game</a>
 
-<c:url value='/current.htm' var='current_game_url'/>
+<c:url value='/board.htm' var='current_game_url'/>
 <a href='${current_game_url}'>Current game</a>
 
 <vdab:footer/>
