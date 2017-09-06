@@ -3,13 +3,13 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix='vdab' uri='http://vdab.be/tags' %>
-<fmt:setBundle basename='teksten'/>
+<fmt:setBundle basename='resourceBundles.teksten'/>
 
 <!doctype html>
 <html lang="nl">
 <head>
- <fmt:message key='index.title' var="titel"/>
- <vdab:head title="${titel}"/>
+ <fmt:message key='index.title' var="title"/>
+ <vdab:head title="${title}"/>
 </head>
 <body>
 <vdab:menu/>
