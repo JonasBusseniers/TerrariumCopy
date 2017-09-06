@@ -76,9 +76,9 @@ public enum Board {
 						// No Actions performed.. DO ACTION
 						organisms[i][j].setHasActed(true);
 						if (organisms[i][j] instanceof Herbivore) {
-							if ((j == organisms[i].length - 1) || (organisms[i][j + 1] == null) // vermijdt
+							if (isEmptyPosition(i, j + 1)) // vermijdt
 							// ArrayIndexOutOfBoundsException
-							) {
+							{
 								move(i, j);
 							} else if (organisms[i][j + 1] instanceof Plant) {
 								eat(i, j, i, j + 1);
@@ -86,7 +86,7 @@ public enum Board {
 								mate();
 							}
 						} else if (organisms[i][j] instanceof Carnivore) {
-							if ((j == organisms[i].length - 1) || (organisms[i][j + 1] == null)) {
+							if (isEmptyPosition(i, j + 1)) {
 								move(i, j);
 							} else if (organisms[i][j + 1] instanceof Carnivore) {
 								fight(i, j);
