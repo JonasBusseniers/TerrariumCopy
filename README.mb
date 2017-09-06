@@ -1,0 +1,8 @@
+to run the application:
+    Enter command:
+        mvn clean package cargo:run
+    Open following link in browser:
+        http://localhost:8080/
+
+to redeploy:
+    mvn cargo:redeploy
