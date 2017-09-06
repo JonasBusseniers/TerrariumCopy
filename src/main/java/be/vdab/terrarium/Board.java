@@ -13,11 +13,11 @@ import be.vdab.entities.Plant;
 
 public class Board {
 
-	// private static int ROW = 6;
-	// private static int COL = 6;
+	private static int ROW = 6;
+	private static int COL = 6;
 	private int aantalPlantenPerBeurt = 2;
-	private Organism[][] organisms;
-	private Organism[][] organismsTemp;
+	private Organism[][] organisms = new Organism[ROW][COL];
+	private Organism[][] organismsTemp = new Organism[ROW][COL];
 	private int aantalOrganism = 0;
 
 	public void setOrganisms(Organism[][] organisms) {
