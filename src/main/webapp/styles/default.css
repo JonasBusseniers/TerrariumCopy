@@ -4,13 +4,27 @@ body {
     color: #5A0000;
     font-family: sans-serif;
 }
-
+h1{
+    font-size: 2.5em;
+    color: green;
+    margin-top: 0;
+}
+h2{
+    font-size: 2em;
+    color: green;
+}
+a{
+    color: green;
+}
 
 /* Menu */
-  nav ul {
-      background-color: green;
-      padding: 0.4em 0;
-  }
+nav ul {
+    background-color: green;
+    padding: 0.4em 0;
+    display: inline-block;
+    border-left: 2px solid green;
+    border-radius: 10px;
+}
 
 nav li {
     display: inline;
@@ -23,11 +37,24 @@ nav li a {
     text-decoration: none;
     vertical-align: middle;
 }
-
-nav li a:hover {
-    color: #F7FFCC;
+nav li:last-child{
+    padding-right: 0.5em;
 }
 
+nav li a:hover {
+    color: greenyellow;
+}
+
+
+/* Footer */
+footer{
+    padding-top: 1.5em;
+}
+footer p {
+    border: 1px solid green;
+    padding: 0.2em;
+    display: inline-block;
+}
 
 /*Terrarium raster
 container flexbox */
@@ -66,19 +93,4 @@ container flexbox */
 /* msg under board */
 #msg{
 
-}
-
-/* Pie chart */
-svg {
-    width: 100px; height: 100px;
-    transform: rotate(-90deg);
-    background: yellowgreen;
-    border-radius: 50%;
-}
-
-circle {
-    fill: yellowgreen;
-    stroke: #655;
-    stroke-width: 32;
-    stroke-dasharray: 75 100; /* for 38% */
 }
