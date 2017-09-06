@@ -3,7 +3,7 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix='vdab' uri='http://vdab.be/tags' %>
-<fmt:setBundle basename='teksten'/>
+<fmt:setBundle basename='resourceBundles.teksten'/>
 <fmt:message key='Terrarium' var="titel"/>
 <!doctype html>
 <html lang="nl">

@@ -28,6 +28,7 @@ nav li a:hover {
     color: #F7FFCC;
 }
 
+
 /*Terrarium raster
 container flexbox */
   .container {
@@ -36,7 +37,6 @@ container flexbox */
       display: flex;
       flex-flow: row nowrap;
   }
-
 /* raster flexbox */
 .raster {
     flex: 0 0 460px;
@@ -46,7 +46,6 @@ container flexbox */
     height: 400px;
     margin-left: 50px;
 }
-
 /* colom */
 .raster > div {
     flex: 1 1 auto;
@@ -56,7 +55,6 @@ container flexbox */
     background: silver;
     height: 100px;
 }
-
 /* row */
 .raster > div > div {
     flex: 1 1 auto;
@@ -65,22 +63,22 @@ container flexbox */
     text-align: center;
     padding-top: 10px;
 }
+/* msg under board */
+#msg{
+
+}
 
 /* Pie chart */
 svg {
+    width: 100px; height: 100px;
     transform: rotate(-90deg);
     background: yellowgreen;
     border-radius: 50%;
 }
 
-@keyframes fillup {
-    to { stroke-dasharray: 158 158; }
-}
-
 circle {
     fill: yellowgreen;
     stroke: #655;
-    stroke-width: 50;
-    stroke-dasharray: 0 158;
-    animation: fillup 5s linear infinite;
+    stroke-width: 32;
+    stroke-dasharray: 75 100; /* for 38% */
 }

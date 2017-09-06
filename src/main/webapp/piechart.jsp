@@ -15,8 +15,10 @@
 
 <h1>${titel}</h1>
 
-<svg width="100" height="100">
-    <circle r="25" cx="50" cy="50" />
+<svg viewBox="0 0 32 32">
+    <circle r="16" cx="16" cy="16" />
 </svg>
 
 <vdab:footer/>
+</body>
+</html>
