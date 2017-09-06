@@ -16,7 +16,7 @@ public enum Board {
 	INSTANCE;
 	private static int ROW = 6;
 	private static int COL = 6;
-	private static final int AANTALPLANTENPERBEURT = 2;
+	private static int AANTALPLANTENPERBEURT = 2;
 	private static Organism[][] organisms = new Organism[ROW][COL];
 	static int aantalOrganism = 0;
 
@@ -204,6 +204,10 @@ public enum Board {
 
 	protected static Organism[][] getOrganisms() {
 		return organisms;
+	}
+
+	protected static void setAANTALPLANTENPERBEURT(int aANTALPLANTENPERBEURT) {
+		AANTALPLANTENPERBEURT = aANTALPLANTENPERBEURT;
 	}
 
 }

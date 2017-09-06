@@ -143,16 +143,14 @@ public class BoardTest {
 	}
 
 	@Test
-	public void carnivoreDoesNotFightHerbivoreOnRight() throws BoardException {
+	public void carnivoreDoesNotFightPlantOnRight() throws BoardException {
 		Carnivore carnivore = new Carnivore(1, false);
-		Herbivore herbivore = new Herbivore(3, false);
-		Herbivore herbivore2 = new Herbivore(3, false);
+		Plant plant = new Plant(1, false);
 		Organism[][] organisms = Board.getOrganisms();
 		organisms[0][0] = carnivore;
-		organisms[0][1] = herbivore;
-		organisms[0][2] = herbivore2;
+		organisms[0][1] = plant;
 		Board.nextDay();
-		assertEquals(herbivore, organisms[0][1]);
+		assertEquals(plant, organisms[0][1]);
 	}
 
 	@Test
@@ -209,8 +207,10 @@ public class BoardTest {
 		organisms[0][0] = carnivore;
 		organisms[0][1] = null;
 		organisms[1][0] = plant;
+		Board.setAANTALPLANTENPERBEURT(0);
 		Board.nextDay();
-		assertEquals(carnivore, organisms[0][1]);
+		assertEquals(carnivore, organisms[0][1]); // faalt vaak door
+													// generateNewPlants
 	}
 
 	@Test
@@ -232,5 +232,21 @@ public class BoardTest {
 		organisms[0][0] = carnivore;
 		Board.nextDay();
 		assertEquals(true, carnivore.isHasActed());
+	}
+
+	@Test
+	public void newPlantsAreGeneratedOnNextDay() throws BoardException {
+		Board.nextDay();
+		Organism[][] organisms = Board.getOrganisms();
+		int teller = 0;
+		for (int i = 0; i < organisms.length; i++) {
+			for (int j = 0; j < organisms[i].length; j++) {
+
+				if (organisms[i][j] instanceof Plant) {
+					teller++;
+				}
+			}
+		}
+		assertTrue(teller != 0);
 	}
 }
