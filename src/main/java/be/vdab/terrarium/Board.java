@@ -227,7 +227,7 @@ public class Board {
 		return organisms;
 	}
 
-	protected void setAantalPlantenPerBeurt(int aantalPlantenPerBeurt) {
+	public void setAantalPlantenPerBeurt(int aantalPlantenPerBeurt) {
 		this.aantalPlantenPerBeurt = aantalPlantenPerBeurt;
 	}
 	

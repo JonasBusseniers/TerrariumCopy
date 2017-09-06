@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
 import be.vdab.entities.Carnivore;
 import be.vdab.entities.Herbivore;
 import be.vdab.entities.Organism;
@@ -39,7 +40,7 @@ public class BoardServlet extends HttpServlet {
 	protected void doGetNewBoard(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SpecifiedAmountsTerrariumGenerator generator = new SpecifiedAmountsTerrariumGenerator();
 		HttpSession session = request.getSession(false);
-				if (session != null) {
+				//if (session != null) {
 		generator.setSize(6, 6);
 		generator.setAmountForType(Plant.class, 2);
 		generator.setAmountForType(Herbivore.class, 3);
@@ -59,13 +60,13 @@ public class BoardServlet extends HttpServlet {
 		
 		Map <Integer, Organism> organismsMap = new LinkedHashMap <>();
 		
-		for (int i; i < board.getRow(); i++) {
-			for (int j; j < board.getRow(); j++) {
+		for (int i = 0; i < board.getRow(); i++) {
+			for (int j = 0; j < board.getRow(); j++) {
 				organismsMap.put( (i * 10) + j, organisms[i][j]);
 			}
 			
 		}
-		Request.setAttribute("organisms", );
+		request.setAttribute("organisms", organismsMap);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

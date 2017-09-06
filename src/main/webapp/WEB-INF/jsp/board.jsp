@@ -4,7 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix='vdab' uri='http://vdab.be/tags' %>
 <fmt:setBundle basename='teksten'/>
-<fmt:message key='<%-- hier de pagina titel %>' var="titel"/>
+<fmt:message key='Terrarium' var="titel"/>
 <!doctype html>
 <html lang="nl">
 <head>
@@ -15,7 +15,16 @@
 
 <h1>${titel}</h1>
 
-<%-- Hier de pagina inhoud --%>
+<div class="container">
+    <div class="raster">
+			<c:forEach var='organism' items='${organismsMap}'>
+				<div id='${organismsMap.key}'><img src='${organismsMap.value.url}'/></div>
+			</c:forEach>
+    </div>
+</div>
+
+<div id="msg"></div>  <!-- toon fouten hier -->
+<input id="NextDay" type="button" value="Next day.">
 
 <vdab:footer/>
 
