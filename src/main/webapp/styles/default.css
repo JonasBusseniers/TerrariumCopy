@@ -65,3 +65,10 @@ container flexbox */
     text-align: center;
     padding-top: 10px;
 }
+
+/* Pie chart */
+circle {
+    fill: yellowgreen;
+    stroke: #655;
+    stroke-width: 30;
+}
