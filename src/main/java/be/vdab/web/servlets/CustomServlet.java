@@ -57,23 +57,25 @@ public class CustomServlet extends HttpServlet {
 			plantsEveryDay = Integer.parseInt(request.getParameter("plantseveryday"));
 			int organismsStart = plantsStart + herbivoresStart + carnivoresStart;
 			int boardSize = rows * cols;
+
 			if (rows < 6 || rows > 10 || cols < 6 || cols > 10 || plantsEveryDay < 0 || plantsEveryDay > 5
 					|| plantsStart < 0 || herbivoresStart < 0 || carnivoresStart < 0 || herbivoresMinLife < 0
 					|| herbivoresMaxLife < 0 || carnivoresMinLife < 0 || carnivoresMaxLife < 0) {
-				fouten.put("number", "<fmt:message key='numberNotAccepted' />");
+				fouten.put("number", "numberNotAccepted");
 			} else if (organismsStart > boardSize) {
-				fouten.put("boardIsFull", "<fmt:message key='boardFull'><fmt:param value='" + organismsStart
-						+ "'/><fmt:param value='" + boardSize + "' /></fmt:message>");
+				fouten.put("boardIsFull", "boardFull");
+				fouten.put("organismsStart", String.valueOf(organismsStart));
+				fouten.put("boardSize", String.valueOf(boardSize));
 			}
 			if (herbivoresMinLife > herbivoresMaxLife) {
-				fouten.put("herbMinMax", "<fmt:message key='minLargerMax' />");
+				fouten.put("herbMinMax", "minLargerMax");
 			}
 			if (carnivoresMinLife > carnivoresMaxLife) {
-				fouten.put("carnMinMax", "<fmt:message key='minLargerMax' />");
+				fouten.put("carnMinMax", "minLargerMax");
 			}
 
 		} catch (NumberFormatException ex) {
-			fouten.put("number", "<fmt:message key='notANumber />");
+			fouten.put("number", "notANumber");
 		}
 		if (fouten.isEmpty()) {
 			SpecifiedAmountsTerrariumGenerator generator = new SpecifiedAmountsTerrariumGenerator();
