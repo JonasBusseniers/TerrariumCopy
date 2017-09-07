@@ -44,11 +44,11 @@
 <a href='${new_random_game_url}'>New random game</a>
 
 <c:url value='/custom.htm' var='new_custom_game_url'/>
-<a href='${new_custom_game_url}'>New custom game</a>
+<a href='${new_custom_game_url}'><fmt:message key='newCustomGame'/></a>
 
 <c:if test='${not empty terrarium}'>
   <c:url value='/board.htm' var='current_game_url'/>
-  <a href='${current_game_url}'>Current game</a>
+  <a href='${current_game_url}'><fmt:message key='currentGame'/></a>
 </c:if>
 <vdab:footer/>
 </body>
