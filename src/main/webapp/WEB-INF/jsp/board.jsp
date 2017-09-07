@@ -17,9 +17,16 @@
 
 <div class="container">
     <div class="raster">
-			<c:forEach var='organism' items='${organismsMap}'>
-				<div id='${organismsMap.key}'><img src='${organismsMap.value.url}'/></div>
+		<!--  	<c:forEach var='organism' items='${organisms}'>
+				<div id='${organisms.key}'><img src='${organismsMap.value.url}'/></div>
 			</c:forEach>
+		-->
+		<c:forEach var='organism' items='${organisms}'>
+				<div id='${organism.key}' value="${organism.key}">  
+					<img src = '<c:url value="${organism.value.url}"/>' />
+					'${organism.value.life}'
+					</div>
+		</c:forEach>
     </div>
 </div>
 
