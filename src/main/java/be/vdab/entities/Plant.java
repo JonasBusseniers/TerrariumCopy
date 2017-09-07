@@ -20,6 +20,6 @@ public class Plant extends Organism
     @Override
     public String toString()   
     {
-        return "P";
+        return "Plant";
     }
 }

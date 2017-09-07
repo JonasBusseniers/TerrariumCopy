@@ -13,7 +13,7 @@ public class Carnivore extends Organism
     @Override
     public String toString()   
     {
-        return "C";
+        return "Carn";
     }
 
 	public String getUrl() {

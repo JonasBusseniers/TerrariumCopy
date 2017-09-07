@@ -12,7 +12,7 @@ public class Herbivore extends Organism
     @Override
     public String toString()   
     {
-        return "H";
+        return "Herb";
     }
 
 	public String getUrl() {
