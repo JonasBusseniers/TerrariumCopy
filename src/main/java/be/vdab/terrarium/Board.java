@@ -57,6 +57,8 @@ public class Board {
 	}
 
 	public void nextDay() throws BoardException {
+		
+		System.out.println("next");
 
 		// Set all HasActed on false
 		for (int i = 0; i < organisms.length; i++) {
