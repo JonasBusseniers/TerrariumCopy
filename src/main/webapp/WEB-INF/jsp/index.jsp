@@ -1,4 +1,4 @@
-<%@page contentType='text/html' pageEncoding='UTF-8' %>
+<%@page contentType='text/html' pageEncoding='UTF-8' session="false"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -19,11 +19,11 @@
 <p><fmt:message key='theOrganisms'/></p>
 <div class='imagesIndex'>
   <p><fmt:message key='plant'/></p>
-  <img src='/images/plant.png'/>
+  <img src='.../images/plant.png'/>
   <p><fmt:message key='herbivore'/></p>
-  <img src='/images/herbivore.png'/>
+  <img src='.../images/herbivore.png'/>
   <p><fmt:message key='carnivore'/></p>
-  <img src='/images/carnivore.png'/>
+  <img src='.../images/carnivore.png'/>
 </div>
 <p><fmt:message key='theRules'/></p>
 <ul>
