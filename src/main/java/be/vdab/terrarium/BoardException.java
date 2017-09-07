@@ -9,6 +9,6 @@ public class BoardException extends Exception
     
     public BoardException(String omschrijving)
     {
-        super ("BoardException: " + omschrijving);
+        super (omschrijving);
     }
 }
