@@ -16,19 +16,6 @@
 
 <h1>${titel}</h1>
 
-<c:url value='/board.htm' var='new_random_game_url'>
-  <c:param name='new' value='1'/>
-</c:url>
-
-<a href='${new_random_game_url}'>New random game</a>
-
-<c:url value='/custom.htm' var='new_custom_game_url'/>
-<a href='${new_custom_game_url}'>New custom game</a>
-
-<c:if test='${not empty terrarium}'>
-  <c:url value='/board.htm' var='current_game_url'/>
-  <a href='${current_game_url}'>Current game</a>
-</c:if>
 <p><fmt:message key='theOrganisms'/></p>
 <div class='imagesIndex'>
   <p><fmt:message key='plant'/></p>
@@ -49,6 +36,20 @@
   <li><fmt:message key='rule7'/></li>
   <li><fmt:message key='rule8'/></li>
 </ul>
+
+<c:url value='/board.htm' var='new_random_game_url'>
+  <c:param name='new' value='1'/>
+</c:url>
+
+<a href='${new_random_game_url}'>New random game</a>
+
+<c:url value='/custom.htm' var='new_custom_game_url'/>
+<a href='${new_custom_game_url}'>New custom game</a>
+
+<c:if test='${not empty terrarium}'>
+  <c:url value='/board.htm' var='current_game_url'/>
+  <a href='${current_game_url}'>Current game</a>
+</c:if>
 <vdab:footer/>
 </body>
 </html>
