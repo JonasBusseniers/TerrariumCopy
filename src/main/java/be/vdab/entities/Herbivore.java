@@ -14,4 +14,12 @@ public class Herbivore extends Organism
     {
         return "H";
     }
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
 }

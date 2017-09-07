@@ -15,4 +15,12 @@ public class Carnivore extends Organism
     {
         return "C";
     }
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
 }

@@ -4,6 +4,7 @@ public abstract class Organism {
     
     int life;
     boolean hasActed;
+    String url;
     
     public Organism (int life, boolean hasActed)
     {
