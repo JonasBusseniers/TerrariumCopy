@@ -16,7 +16,7 @@
 <h1>${title}</h1>
 
 <div id="msg">${fouten.number}</div>
-<form method="post">
+<form method="post" id="customForm">
 <h3><fmt:message key="board" /></h3>
 <label><span class="text"><fmt:message key='rows'/> (6-10)</span><input type="number" min="6" max="10" value="${empty param.rows ? 6 : param.rows}" name="rows" step="1" required></label>
 <label><span class="text"><fmt:message key='cols'/> (6-10)</span><input type="number" min="6" max="10" value="${empty param.cols ? 6 : param.cols}" name="cols" step="1" required></label>
@@ -35,8 +35,14 @@
 <label><span class="text"><fmt:message key='minLife'/></span><input type="number"value="${empty param.carnivoresminlife ? 0 : param.carnivoresminlife}" min="0" step="1" name="carnivoresminlife"><span class="error">${fouten.carnMinMax}</span></label>
 <label><span class="text"><fmt:message key='maxLife'/></span><input type="number"value="${empty param.carnivoresmaxlife ? 10 : param.carnivoresmaxlife}" min="0" step="1" name="carnivoresmaxlife"><span class="error">${fouten.carnMinMax}</span></label>
 <br>
-<input type="submit" name="play" value="<fmt:message key='play' />">
+<input type="submit" name="play" value="<fmt:message key='play' />" id="customSubmit">
 </form>
+
+<script language="JavaScript">
+    document.getElementsById(costumForm).onSubmit = function () {
+        document.getElementsById(customSubmit).disabled = true;
+    }
+</script>
 
 <vdab:footer/>
 
