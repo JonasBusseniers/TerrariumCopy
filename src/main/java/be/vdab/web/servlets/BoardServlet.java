@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 
 import be.vdab.entities.Carnivore;
+import be.vdab.entities.Dirt;
 import be.vdab.entities.Herbivore;
 import be.vdab.entities.Organism;
 import be.vdab.entities.Plant;
@@ -53,12 +54,19 @@ public class BoardServlet extends HttpServlet {
 			
 			Map <Integer, Organism> organismsMap = new LinkedHashMap <>();
 			
+//			Organism organism = new Plant (1, true);
+//			
+//			organismsMap.put(1, organism);
+			
 			for (int i = 0; i < board.getRow(); i++) {
 				for (int j = 0; j < board.getRow(); j++) {
-					organismsMap.put( (i * 10) + j, organisms[i][j]);
+//					organismsMap.put(i, new Dirt (1, true));
+					organismsMap.put(i * 10 + j, organisms[i][j]);
 				}
-				
 			}
+//			request.setAttribute("organism", organismsMap);
+//			request.getRequestDispatcher(VIEW).forward(request, response);
+			
 		request.setAttribute("organisms", organismsMap);
 		request.getRequestDispatcher(VIEW).forward(request, response);
 	}
