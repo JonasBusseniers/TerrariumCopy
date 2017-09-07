@@ -44,6 +44,7 @@ input[type=submit] {
     background-size: auto auto;
     -webkit-box-shadow: 5px 5px 4px 0 rgba(0,255,0,0.5) ;
     box-shadow: 5px 5px 4px 0 rgba(0,255,0,0.5) ;
+    width: 50px;
 }
 input {
     display: inline-block;
@@ -58,8 +59,9 @@ input {
     -o-text-overflow: clip;
     text-overflow: clip;
     background: rgba(0,128,0,1);
-    -webkit-box-shadow: 5px 5px 1px 0 rgba(0,255,0,0.5) ;
-    box-shadow: 5px 5px 1px 0 rgba(0,255,0,0.5) ;
+    -webkit-box-shadow: 1px 1px 1px 0 rgba(0,255,0,0.5) ;
+    box-shadow: 1px 1px 1px 0 rgba(0,255,0,0.5) ;
+    width: 150px;
 }
 
 label span.error {
@@ -79,6 +81,9 @@ label{
 }
 label span.text{
     display: block;
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+    font-weight: bold;
 }
 
 label span.error:empty, .error:empty {

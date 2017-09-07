@@ -19,11 +19,11 @@
 <p><fmt:message key='theOrganisms'/></p>
 <div class='imagesIndex'>
   <p><fmt:message key='plant'/></p>
-  <img src='.../images/plant.png'/>
+  <img src='../images/plant.png'/>
   <p><fmt:message key='herbivore'/></p>
-  <img src='.../images/herbivore.png'/>
+  <img src='../images/herbivore.png'/>
   <p><fmt:message key='carnivore'/></p>
-  <img src='.../images/carnivore.png'/>
+  <img src='../images/carnivore.png'/>
 </div>
 <p><fmt:message key='theRules'/></p>
 <ul>
