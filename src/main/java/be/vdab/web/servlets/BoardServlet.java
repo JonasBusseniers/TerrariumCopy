@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 
 
 import be.vdab.entities.Carnivore;
-import be.vdab.entities.Dirt;
 import be.vdab.entities.Herbivore;
 import be.vdab.entities.Organism;
 import be.vdab.entities.Plant;
@@ -40,6 +39,7 @@ public class BoardServlet extends HttpServlet {
 		
     	if (session.getAttribute("board") == null) {
     		
+    		System.out.print("null");
     		
     		session= request.getSession();
     		
@@ -57,18 +57,17 @@ public class BoardServlet extends HttpServlet {
 			board.setAantalPlantenPerBeurt(1);
 	
 			@SuppressWarnings("unused")
-			TerrariumRenderer renderer = new TerrariumRenderer(board.getOrganisms());
 			
-			Organism[][] organisms = board.getOrganisms();
-			int aantalPlanten = 0, aantalHerbivore = 0, aantalCarnivore = 0, aantalDirt = 0;
 			
-			for (int i = 0; i < organisms.length; i++) {
-				for (int j = 0; j < organisms[0].length; j++) {
-					if (organisms[i][j] == null) {
-						organisms[i][j] = new Dirt(0, true);
-						aantalDirt++;
-					} else {
-						switch (organisms[i][j].toString()) {
+			//Organism[][] organisms = board.getOrganisms().clone();
+			Organism[][] organismsTemp = board.getOrganisms().clone();
+			
+			int aantalPlanten = 0, aantalHerbivore = 0, aantalCarnivore = 0;
+			
+			for (int i = 0; i < organismsTemp.length; i++) {
+				for (int j = 0; j < organismsTemp[0].length; j++) {
+					if (organismsTemp[i][j] != null) {
+						switch (organismsTemp[i][j].toString()) {
 						case "Herb": 	aantalHerbivore++;
 										break;
 						case "Plant": 	aantalPlanten++;
@@ -84,25 +83,23 @@ public class BoardServlet extends HttpServlet {
 		request.setAttribute("numberHerb", aantalHerbivore);
 		request.setAttribute("numberPlant", aantalPlanten);
 		request.setAttribute("numberCarn", aantalCarnivore);
-		request.setAttribute("numberDirt", aantalDirt);
-		request.setAttribute("organisms", organisms);
+		request.setAttribute("organisms", organismsTemp);
 		
 		session.setAttribute("board", board);
 		request.getRequestDispatcher(VIEW).forward(request, response);	
 		
     	} else {
     		
+    		System.out.print("else");
+    		
     		Board board = (Board) session.getAttribute("board");
 			
-    		Organism[][] organisms = board.getOrganisms();
-			int aantalPlanten = 0, aantalHerbivore = 0, aantalCarnivore = 0, aantalDirt = 0;
+    		Organism[][] organisms = board.getOrganisms().clone();
+			int aantalPlanten = 0, aantalHerbivore = 0, aantalCarnivore = 0;
 			
 			for (int i = 0; i < organisms.length; i++) {
 				for (int j = 0; j < organisms[0].length; j++) {
-					if (organisms[i][j] == null) {
-						organisms[i][j] = new Dirt(0, true);
-						aantalDirt++;
-					} else {
+					if (organisms[i][j] != null) {
 						switch (organisms[i][j].toString()) {
 						case "Herb": 	aantalHerbivore++;
 										break;
@@ -110,16 +107,17 @@ public class BoardServlet extends HttpServlet {
 										break;	
 						case "Carn": 	aantalCarnivore++;
 										break;
+										
 						}
 					}
 				}
 			}
-			
+//			TerrariumRenderer renderer = new TerrariumRenderer(board.getOrganisms());
+//			renderer.render();
 			request.setAttribute("numberDays", "Day: " + board.getAantalDagen());
 			request.setAttribute("numberHerb", aantalHerbivore);
 			request.setAttribute("numberPlant", aantalPlanten);
 			request.setAttribute("numberCarn", aantalCarnivore);
-			request.setAttribute("numberDirt", aantalDirt);
 			request.setAttribute("organisms", organisms);
 			
 			session.setAttribute("board", board);
