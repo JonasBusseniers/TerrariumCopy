@@ -22,10 +22,6 @@ a:hover{
 p{
 
 }
-label{
-    display: block;
-    margin: 0.5em;
-}
 input[type=submit] {
     display: inline-block;
     -webkit-box-sizing: content-box;
@@ -54,11 +50,10 @@ input {
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
     box-sizing: content-box;
-    padding: 10px 20px;
+    padding: 5px 10px;
     border: 1px solid #000000;
     -webkit-border-radius: 9px;
     border-radius: 9px;
-    font: normal 16px/normal "Times New Roman", Times, serif;
     color: rgba(0,0,0,0.9);
     -o-text-overflow: clip;
     text-overflow: clip;
@@ -67,7 +62,7 @@ input {
     box-shadow: 5px 5px 1px 0 rgba(0,255,0,0.5) ;
 }
 
-label span, .fout {
+label span.error {
     background-color: red;
     border-bottom-right-radius: 0.5em;
     border-top-left-radius: 0.5em;
@@ -78,7 +73,15 @@ label span, .fout {
     color: white;
 }
 
-label span:empty, .fout:empty {
+label{
+    display: block;
+    margin: 0.5em;
+}
+label span.text{
+    display: block;
+}
+
+label span.error:empty, .error:empty {
     display: none;
 }
 
