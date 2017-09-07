@@ -35,7 +35,7 @@ public class BoardServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SpecifiedAmountsTerrariumGenerator generator = new SpecifiedAmountsTerrariumGenerator();
 		HttpSession session= request.getSession(false);
-    	if (session == null) {
+    	if (session.getAttribute("board") == null) {
     		
     		session= request.getSession();
 			generator.setSize(6, 6);
@@ -57,23 +57,19 @@ public class BoardServlet extends HttpServlet {
 			Organism[][] organisms = board.getOrganisms();
 			int aantalPlanten = 0, aantalHerbivore = 0, aantalCarnivore = 0, aantalDirt = 0;
 			
-			Map <String, Organism> organismsMap = new LinkedHashMap <>();
-			
-			for (int i = 0; i < board.getRow(); i++) {
-				for (int j = 0; j < board.getRow(); j++) {			
-					if (organisms[i][j] == null)	{
-						organismsMap.put("organism row-" + i + " col-" + j, new Dirt (0, true));
+			for (int i = 0; i < organisms.length; i++) {
+				for (int j = 0; j < organisms[0].length; j++) {
+					if (organisms[i][j] == null) {
+						organisms[i][j] = new Dirt(0, true);
 						aantalDirt++;
-					} 
-					else 	{
-						organismsMap.put("organism row-" + i + " col-" + j, organisms[i][j]);
+					} else {
 						switch (organisms[i][j].toString()) {
-							case "Herb": 	aantalHerbivore++;
-											break;
-							case "Plant": 	aantalPlanten++;
-											break;	
-							case "Carn": 	aantalCarnivore++;
-											break;
+						case "Herb": 	aantalHerbivore++;
+										break;
+						case "Plant": 	aantalPlanten++;
+										break;	
+						case "Carn": 	aantalCarnivore++;
+										break;
 						}
 					}
 				}
@@ -84,7 +80,7 @@ public class BoardServlet extends HttpServlet {
 		request.setAttribute("numberPlant", aantalPlanten);
 		request.setAttribute("numberCarn", aantalCarnivore);
 		request.setAttribute("numberDirt", aantalDirt);
-		request.setAttribute("organisms", organismsMap);
+		request.setAttribute("organisms", organisms);
 		
 		session.setAttribute("board", board);
 		request.getRequestDispatcher(VIEW).forward(request, response);	
@@ -93,26 +89,22 @@ public class BoardServlet extends HttpServlet {
     		
     		Board board = (Board) session.getAttribute("board");
 			
-			Organism[][] organisms = (Organism[][]) request.getAttribute("organisms");
+    		Organism[][] organisms = board.getOrganisms();
 			int aantalPlanten = 0, aantalHerbivore = 0, aantalCarnivore = 0, aantalDirt = 0;
 			
-			Map <String, Organism> organismsMap = new LinkedHashMap <>();
-			
-			for (int i = 0; i < board.getRow(); i++) {
-				for (int j = 0; j < board.getRow(); j++) {			
-					if (organisms[i][j] == null)	{
-						organismsMap.put("organism row-" + board.getRow() + " col-" + board.getColumn(), new Dirt (0, true));
+			for (int i = 0; i < organisms.length; i++) {
+				for (int j = 0; j < organisms[0].length; j++) {
+					if (organisms[i][j] == null) {
+						organisms[i][j] = new Dirt(0, true);
 						aantalDirt++;
-					} 
-					else 	{
-						organismsMap.put("organism row-" + board.getRow() + " col-" + board.getColumn(), organisms[i][j]);
+					} else {
 						switch (organisms[i][j].toString()) {
-							case "Herb": 	aantalHerbivore++;
-											break;
-							case "Plant": 	aantalPlanten++;
-											break;	
-							case "Carn": 	aantalCarnivore++;
-											break;
+						case "Herb": 	aantalHerbivore++;
+										break;
+						case "Plant": 	aantalPlanten++;
+										break;	
+						case "Carn": 	aantalCarnivore++;
+										break;
 						}
 					}
 				}
@@ -123,7 +115,7 @@ public class BoardServlet extends HttpServlet {
 			request.setAttribute("numberPlant", aantalPlanten);
 			request.setAttribute("numberCarn", aantalCarnivore);
 			request.setAttribute("numberDirt", aantalDirt);
-			request.setAttribute("organisms", organismsMap);
+			request.setAttribute("organisms", organisms);
 			
 			session.setAttribute("board", board);
 			request.getRequestDispatcher(VIEW).forward(request, response);	

@@ -43,15 +43,18 @@
 
 <div class="container">
 	<div id="Days">${numberDays}</div>
-				
-    <div class="raster">
-		<c:forEach var='organism' items='${organisms}'>
-				<div class='${organism.key}'>  
-					<img src = '<c:url value="${organism.value.url}"/>'/>
-					${organism.value.life}
-				</div>
-		</c:forEach>		
-
+	 	<div class="raster">
+			<c:forEach var='rows' items='${organisms}'>
+			<div class="row">
+			<c:forEach var='organism' items='${rows}'>
+					<div class="cell">  
+						<img width="50px" height="50px" src = '<c:url value="${organism.url}"/>' />
+						${organism.life}
+					</div>
+			</c:forEach>
+			</div></c:forEach>		
+	
+	    </div>
     </div>
 </div>
 
