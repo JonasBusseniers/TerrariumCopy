@@ -33,7 +33,6 @@ public class BoardServlet extends HttpServlet {
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SpecifiedAmountsTerrariumGenerator generator = new SpecifiedAmountsTerrariumGenerator();
-		HttpSession session = request.getSession();
 			generator.setSize(6, 6);
 			generator.setAmountForType(Plant.class, 2);
 			generator.setAmountForType(Herbivore.class, 3);
@@ -51,39 +50,52 @@ public class BoardServlet extends HttpServlet {
 			TerrariumRenderer renderer = new TerrariumRenderer(board.getOrganisms());
 			
 			Organism[][] organisms = board.getOrganisms();
+			int aantalPlanten = 0, aantalHerbivore = 0, aantalCarnivore = 0, aantalDirt = 0;
 			
-//			Map <Integer, Organism> organismsMap = new LinkedHashMap <>();
-//			
-//			
-//			for (int i = 0; i < board.getRow(); i++) {
-//				for (int j = 0; j < board.getRow(); j++) {
-////					organismsMap.put(i, new Dirt (1, true));
-//					organismsMap.put(i * 10 + j, organisms[i][j]);
-//				}
-//			}	 
-//			
-//		request.setAttribute("organisms", organismsMap);
-//		request.getRequestDispatcher(VIEW).forward(request, response);
+
 			
 			Map <String, Organism> organismsMap = new LinkedHashMap <>();
 			
 			for (int i = 0; i < board.getRow(); i++) {
-				for (int j = 0; j < board.getRow(); j++) {
-//					organismsMap.put(i, new Dirt (1, true));
-					organismsMap.put("organism row-" + i + " col-" + j, organisms[i][j]);
+				for (int j = 0; j < board.getRow(); j++) {			
+					if (organisms[i][j] == null)	{
+						organismsMap.put("organism row-" + i + " col-" + j, new Dirt (0, true));
+						aantalDirt++;
+					} 
+					else 	{
+						organismsMap.put("organism row-" + i + " col-" + j, organisms[i][j]);
+						switch (organisms[i][j].toString()) {
+							case "Herb": 	aantalHerbivore++;
+											break;
+							case "Plant": 	aantalPlanten++;
+											break;	
+							case "Carn": 	aantalCarnivore++;
+											break;
+						}
+					}
 				}
-			}	 
+			}
 			
+		request.setAttribute("numberDays", "Day: " + board.getAantalDagen());
+		request.setAttribute("numberHerb", aantalHerbivore);
+		request.setAttribute("numberPlant", aantalPlanten);
+		request.setAttribute("numberCarn", aantalCarnivore);
+		request.setAttribute("numberDirt", aantalDirt);
 		request.setAttribute("organisms", organismsMap);
-		request.getRequestDispatcher(VIEW).forward(request, response);
-			
-			
-			
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("board", board);
+		request.getRequestDispatcher(VIEW).forward(request, response);	
 	}
 
 //    @Override
 //	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//
+//    	HttpSession session= request.getSession(false);
+//    	if (session != null) {
+//    		try {
+//    			
+//    		}
+//    	}
 //	}
 
 }
