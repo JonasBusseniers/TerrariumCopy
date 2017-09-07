@@ -113,7 +113,6 @@ public class Board {
 					}
 				}
 			}
-			aantalDagen++;
 		}
 		// Merge organisms and organismsTemp
 		for (int i = 0; i < organisms.length; i++) {
@@ -124,6 +123,7 @@ public class Board {
 			}
 		}
 		// System.out.println("aantalOrg: " + aantalOrganism);
+		aantalDagen++;
 	}
 
 	protected void fight(int i, int j) {
