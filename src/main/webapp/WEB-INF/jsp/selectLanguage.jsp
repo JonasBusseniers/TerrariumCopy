@@ -12,7 +12,7 @@
   <c:param name='country' value='US'/>
   <c:param name='redirectURL' value='${redirectURL}'/>
 </c:url>
-<ul class='links'>
-  <a href='${nlBEURL}'>nl</a>
-  <a href='${enUSURL}'>en</a>
-</ul>
+<div class="talen">
+  <a href='${nlBEURL}'><img src="<c:url value="/images/BE.png"/>"></a>
+  <a href='${enUSURL}'><img src="<c:url value="/images/US.png"/>"></a>
+</div>

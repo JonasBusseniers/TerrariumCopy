@@ -122,6 +122,14 @@ nav li a:hover {
     color: greenyellow;
 }
 
+.talen{
+    margin-top: 15px;
+}
+.talen img{
+    border: 0;
+    margin-left: 15px;
+}
+
 
 /* Footer */
 footer{
@@ -188,7 +196,8 @@ container flexbox */
     min-height: 1em;
 }
 .cell img{
-    width: 100px;
+    width: 6.25em;
+    height: 6.25em;
 
 }
 /* msg under board */
@@ -200,14 +209,17 @@ container flexbox */
     box-shadow: 5px 5px #777777;
     margin-left: 0.5em;
     padding: 0.5em;
-    color: white;
+    display: inline-block;
 }
-
+#msg:empty{
+    display: none;
+}
 
 /*Index page*/
 .imagesIndex img{
     display: inline;
-    width: 100px;
+    width: 6.25em;
+    height: 6.25em;
 }
 .imagesIndex p{
     display: inline;

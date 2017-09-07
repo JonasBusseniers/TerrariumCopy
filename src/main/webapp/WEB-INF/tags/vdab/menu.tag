@@ -7,10 +7,10 @@
     <nav>
         <ul>
             <li><a href="<c:url value="/"/>">Home</a></li>
+            <c:if test='${not empty board}'>
+            <li><a href='<c:url value="/board.htm"/>'><fmt:message key='currentGame'/></a></li>
+            </c:if>
             <li><a href="<c:url value="/board.htm?new=1"/>"><fmt:message key='newRandomGame'/></a></li>
             <li><a href="<c:url value="/custom.htm"/>"><fmt:message key='newCustomGame'/></a></li>
-            <c:if test='${not empty terrarium}'>
-                <a href='<c:url value="/board.htm"/>'><fmt:message key='currentGame'/></a>
-            </c:if>
     </nav>
 </header>
