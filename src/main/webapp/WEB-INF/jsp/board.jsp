@@ -67,15 +67,20 @@
     </div>
 </div>
 
-<div id="msg">${exception}</div>  <!-- toon fouten hier -->
-<form method='post' id="nextDayForm">
-<input id="NextDay" type="submit" value="Next day.">
-</form>
+	<c:if test='${empty exception}'>
+		<form method='post' id="nextDayForm">
+		<input id="NextDay" type="submit" value="Next day.">
+		</form>
+	</c:if>
+
+	<div id="msg">${exception}</div>  <!-- toon fouten hier -->
+
 <script language="JavaScript">
     document.getElementsById(nextDayForm).onSubmit = function () {
         document.getElementsById(NextDay).disabled = true;
     }
 </script>
+
 <div id="piechart"></div>
 
 <vdab:footer/>
