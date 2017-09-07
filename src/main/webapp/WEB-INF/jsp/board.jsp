@@ -17,7 +17,6 @@
         function drawChart() {
             var data = google.visualization.arrayToDataTable([
                 ['Organism', 'Number'],
-                ['<fmt:message key="dirt"/>', ${numberDirt}],
                 ['<fmt:message key="carnivore"/>', ${numberCarn}],
                 ['<fmt:message key="herbivore"/>', ${numberHerb}],
                 ['<fmt:message key="plant"/>', ${numberPlant}] ]);
@@ -47,10 +46,19 @@
 			<div class="row">
 			<c:forEach var='organism' items='${rows}'>
 					<div class="cell">  
-						<img src = '<c:url value="${organism.url}"/>' />
-						<c:if test="${organism.life ne 0}" >
+						
+						<c:if test='${not empty organism.url}'>
+							<img src = '<c:url value="${organism.url}"/>' />
+						</c:if>
+						
+						<c:if test='${empty organism.url}'>
+							<img src = '<c:url value="images/dirt.png"/>' />
+						</c:if>
+						
+						<c:if test="${not empty organism}" >
 							<div class="lifeBol">${organism.life}</div>
 						</c:if>
+						
 					</div>
 			</c:forEach>
 			</div></c:forEach>		
