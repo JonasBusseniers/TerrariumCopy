@@ -4,7 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix='vdab' uri='http://vdab.be/tags' %>
 <fmt:setBundle basename='resourceBundles.teksten'/>
-<fmt:message key='<%-- hier de pagina titel %>' var="titel"/>
+<fmt:message key='***hier de pagina titel***' var="titel" />
 <!doctype html>
 <html lang="nl">
 <head>
