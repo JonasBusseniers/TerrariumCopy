@@ -46,7 +46,8 @@
 <form method="get" action="/board.htm">
     <input type="submit" value="Go to the next day" />
 </form>
-<label>hallo input <span class="fout">neen</span> <input></label><label>hallo input <input></label>
+<label><span class="text">hallo input</span><input><span class="error">neen</span></label>
+<label><span class="text">hallo inputgfhgfhfgh dfgh</span><input></label>
 
 <vdab:footer/>
 </body>
