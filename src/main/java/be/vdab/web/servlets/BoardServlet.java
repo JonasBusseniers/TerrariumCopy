@@ -1,8 +1,6 @@
 package be.vdab.web.servlets;
 
 import java.io.IOException;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,13 +17,11 @@ import be.vdab.entities.Plant;
 import be.vdab.terrarium.Board;
 import be.vdab.terrarium.BoardException;
 import be.vdab.terrarium.util.SpecifiedAmountsTerrariumGenerator;
-import be.vdab.terrarium.util.TerrariumRenderer;
 
 @WebServlet("/board.htm")
 public class BoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String VIEW = "/WEB-INF/jsp/board.jsp";
-
     public BoardServlet() {
 
     }
@@ -34,30 +30,30 @@ public class BoardServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SpecifiedAmountsTerrariumGenerator generator = new SpecifiedAmountsTerrariumGenerator();
 		HttpSession session= request.getSession(false);
-		
-		System.out.print("doGet");
-		
+		String param = request.getParameter("new");
+		Board board;
     	if (session.getAttribute("board") == null) {
-    		
-    		System.out.print("null");
-    		
-    		session= request.getSession();
-    		
-			generator.setSize(6, 6);
-			generator.setAmountForType(Plant.class, 2);
-			generator.setAmountForType(Herbivore.class, 3);
-			generator.setAmountForType(Carnivore.class, 2);
-			generator.setLifeForceRangeForType(Plant.class, 1, 1);
-			generator.setLifeForceRangeForType(Herbivore.class, 0, 10);
-			generator.setLifeForceRangeForType(Carnivore.class, 0, 10);
+    		if (!param.isEmpty()) {
+    			request.setAttribute("new", "");
+	    		session= request.getSession();
+	    		
+				generator.setSize(6, 6);
+				generator.setAmountForType(Plant.class, 2);
+				generator.setAmountForType(Herbivore.class, 3);
+				generator.setAmountForType(Carnivore.class, 2);
+				generator.setLifeForceRangeForType(Plant.class, 1, 1);
+				generator.setLifeForceRangeForType(Herbivore.class, 0, 10);
+				generator.setLifeForceRangeForType(Carnivore.class, 0, 10);
+				
+				board = new Board();
+				
+				board.setOrganisms(generator.generateTerrarium());
+				board.setAantalPlantenPerBeurt(1);
 			
-			Board board = new Board();
-			
-			board.setOrganisms(generator.generateTerrarium());
-			board.setAantalPlantenPerBeurt(1);
-	
-			@SuppressWarnings("unused")
-			
+    		} else {
+    			request.setAttribute("new", "");
+				board = (Board)session.getAttribute("board");
+    		}
 			
 			//Organism[][] organisms = board.getOrganisms().clone();
 			Organism[][] organismsTemp = board.getOrganisms().clone();
@@ -90,9 +86,7 @@ public class BoardServlet extends HttpServlet {
 		
     	} else {
     		
-    		System.out.print("else");
-    		
-    		Board board = (Board) session.getAttribute("board");
+    		board = (Board) session.getAttribute("board");
 			
     		Organism[][] organisms = board.getOrganisms().clone();
 			int aantalPlanten = 0, aantalHerbivore = 0, aantalCarnivore = 0;
@@ -121,6 +115,7 @@ public class BoardServlet extends HttpServlet {
 			request.setAttribute("organisms", organisms);
 			
 			session.setAttribute("board", board);
+			request.setAttribute("new", "");
 			request.getRequestDispatcher(VIEW).forward(request, response);	
     	}
 	}
@@ -128,8 +123,6 @@ public class BoardServlet extends HttpServlet {
     @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	HttpSession session= request.getSession();
-    	
-    	System.out.println("dd");
     	
     		Board board = (Board) session.getAttribute("board");
     		try {
