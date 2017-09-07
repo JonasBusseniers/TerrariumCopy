@@ -38,27 +38,42 @@ public class CustomServlet extends HttpServlet {
 		int cols = 6;
 		int plantsStart = 3;
 		int herbivoresStart = 3;
+		int herbivoresMinLife = 0;
+		int herbivoresMaxLife = 10;
 		int carnivoresStart = 3;
+		int carnivoresMinLife = 0;
+		int carnivoresMaxLife = 10;
 		int plantsEveryDay = 1;
 		try {
 			rows = Integer.parseInt(request.getParameter("rows"));
 			cols = Integer.parseInt(request.getParameter("cols"));
 			plantsStart = Integer.parseInt(request.getParameter("plantsstart"));
 			herbivoresStart = Integer.parseInt(request.getParameter("herbivoresstart"));
+			herbivoresMinLife = Integer.parseInt(request.getParameter("herbivoresminlife"));
+			herbivoresMaxLife = Integer.parseInt(request.getParameter("herbivoresmaxlife"));
 			carnivoresStart = Integer.parseInt(request.getParameter("carnivoresstart"));
+			carnivoresMinLife = Integer.parseInt(request.getParameter("carnivoresminlife"));
+			carnivoresMaxLife = Integer.parseInt(request.getParameter("carnivoresmaxlife"));
 			plantsEveryDay = Integer.parseInt(request.getParameter("plantseveryday"));
 			int organismsStart = plantsStart + herbivoresStart + carnivoresStart;
 			int boardSize = rows * cols;
 			if (rows < 6 || rows > 10 || cols < 6 || cols > 10 || plantsEveryDay < 0 || plantsEveryDay > 5
-					|| plantsStart < 0 || herbivoresStart < 0 || carnivoresStart < 0) {
-				fouten.put("number", "You tried to enter a number that is not accepted. Foei!");
+					|| plantsStart < 0 || herbivoresStart < 0 || carnivoresStart < 0 || herbivoresMinLife < 0
+					|| herbivoresMaxLife < 0 || carnivoresMinLife < 0 || carnivoresMaxLife < 0) {
+				fouten.put("number", "<fmt:message key='numberNotAccepted' />");
 			} else if (organismsStart > boardSize) {
-				fouten.put("boardIsFull", "You tried to start with a total of " + organismsStart
-						+ "organisms, but the board is only " + boardSize + " tiles large.");
+				fouten.put("boardIsFull", "<fmt:message key='boardFull'><fmt:param value='" + organismsStart
+						+ "'/><fmt:param value='" + boardSize + "' /></fmt:message>");
+			}
+			if (herbivoresMinLife > herbivoresMaxLife) {
+				fouten.put("herbMinMax", "<fmt:message key='minLargerMax' />");
+			}
+			if (carnivoresMinLife > carnivoresMaxLife) {
+				fouten.put("carnMinMax", "<fmt:message key='minLargerMax' />");
 			}
 
 		} catch (NumberFormatException ex) {
-			fouten.put("number", "You tried to enter something that is not a number. Foei!");
+			fouten.put("number", "<fmt:message key='notANumber />");
 		}
 		if (fouten.isEmpty()) {
 			SpecifiedAmountsTerrariumGenerator generator = new SpecifiedAmountsTerrariumGenerator();
@@ -68,8 +83,8 @@ public class CustomServlet extends HttpServlet {
 			generator.setAmountForType(Herbivore.class, herbivoresStart);
 			generator.setAmountForType(Carnivore.class, carnivoresStart);
 			generator.setLifeForceRangeForType(Plant.class, 1, 1);
-			generator.setLifeForceRangeForType(Herbivore.class, 0, 10);
-			generator.setLifeForceRangeForType(Carnivore.class, 0, 10);
+			generator.setLifeForceRangeForType(Herbivore.class, herbivoresMinLife, herbivoresMaxLife);
+			generator.setLifeForceRangeForType(Carnivore.class, carnivoresMinLife, carnivoresMaxLife);
 			Board board = new Board();
 			board.setOrganisms(generator.generateTerrarium());
 			board.setAantalPlantenPerBeurt(plantsEveryDay);
