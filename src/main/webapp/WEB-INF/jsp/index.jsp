@@ -29,7 +29,17 @@
   <c:url value='/board.htm' var='current_game_url'/>
   <a href='${current_game_url}'>Current game</a>
 </c:if>
-
+<p><fmt:message key='theRules'/></p>
+<ul>
+  <li><fmt:message key='rule1'/></li>
+  <li><fmt:message key='rule2'/></li>
+  <li><fmt:message key='rule3'/></li>
+  <li><fmt:message key='rule4'/></li>
+  <li><fmt:message key='rule5'/></li>
+  <li><fmt:message key='rule6'/></li>
+  <li><fmt:message key='rule7'/></li>
+  <li><fmt:message key='rule8'/></li>
+</ul>
 <vdab:footer/>
 </body>
 </html>
