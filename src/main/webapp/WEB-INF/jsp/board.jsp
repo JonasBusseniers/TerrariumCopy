@@ -67,11 +67,15 @@
     </div>
 </div>
 
-<div id="msg">${exception}ghj</div>  <!-- toon fouten hier -->
-<form method='post'>
+<div id="msg">${exception}</div>  <!-- toon fouten hier -->
+<form method='post' id="nextDayForm">
 <input id="NextDay" type="submit" value="Next day.">
 </form>
-
+<script language="JavaScript">
+    document.getElementsById(nextDayForm).onSubmit = function () {
+        document.getElementsById(NextDay).disabled = true;
+    }
+</script>
 <div id="piechart"></div>
 
 <vdab:footer/>
