@@ -25,7 +25,7 @@
 <label><span class="text"><fmt:message key='carnivoresStart' /></span><input type="number"value="${empty param.carnivoresstart ? 3 : param.carnivoresstart}" min="0" step="1" name="carnivoresstart"><span class="error">${fouten.boardIsFull}</span></label>
 <br>
 <label><span class="text"><fmt:message key='plantsEveryDay' /> (0-5)</span><input type="number"value="${empty param.plantseveryday ? 1 : param.plantseveryday}" min="0" max="5" step="1" name="plantseveryday"></label>
-<input type="submit" name="play" value="Pay">
+<input type="submit" name="play" value="<fmt:message key='play' />">
 </form>
 
 <vdab:footer/>
