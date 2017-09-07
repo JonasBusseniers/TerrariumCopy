@@ -14,7 +14,7 @@
 <body>
 <vdab:menu/>
 
-<h1>${titel}</h1>
+<h1>${title}</h1>
 
 <p><fmt:message key='theOrganisms'/></p>
 <div class='imagesIndex'>
