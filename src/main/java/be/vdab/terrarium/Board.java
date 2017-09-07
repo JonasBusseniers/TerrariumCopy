@@ -56,7 +56,7 @@ public class Board {
 		// organisms[1][0] = new Herbivore(1, false); aantalOrganism++;
 	}
 
-	protected void nextDay() throws BoardException {
+	public void nextDay() throws BoardException {
 
 		// Set all HasActed on false
 		for (int i = 0; i < organisms.length; i++) {
