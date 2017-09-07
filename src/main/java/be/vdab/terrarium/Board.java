@@ -57,7 +57,7 @@ public class Board {
 	}
 
 	public void nextDay() throws BoardException {
-		
+
 		System.out.println("next");
 
 		// Set all HasActed on false
@@ -215,8 +215,8 @@ public class Board {
 				int x;
 				int y;
 				do {
-					x = (int) (Math.random() * organisms[0].length);
-					y = (int) (Math.random() * organisms.length);
+					x = (int) (Math.random() * organisms.length);
+					y = (int) (Math.random() * organisms[0].length);
 				} while (organisms[x][y] != null);
 				organismsTemp[x][y] = new Plant(1, true);
 				aantalOrganism++;
@@ -234,15 +234,16 @@ public class Board {
 	public void setAantalPlantenPerBeurt(int aantalPlantenPerBeurt) {
 		this.aantalPlantenPerBeurt = aantalPlantenPerBeurt;
 	}
-	
-	public int getRow () {
+
+	public int getRow() {
 		return organisms.length;
 	}
 
-	public int getColumn () {
+	public int getColumn() {
 		return organisms[0].length;
-	} 
-	public int getAantalDagen(){
+	}
+
+	public int getAantalDagen() {
 		return aantalDagen;
 	}
 
