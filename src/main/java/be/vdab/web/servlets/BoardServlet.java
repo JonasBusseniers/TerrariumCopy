@@ -52,23 +52,33 @@ public class BoardServlet extends HttpServlet {
 			
 			Organism[][] organisms = board.getOrganisms();
 			
-			Map <Integer, Organism> organismsMap = new LinkedHashMap <>();
-			
-//			Organism organism = new Plant (1, true);
+//			Map <Integer, Organism> organismsMap = new LinkedHashMap <>();
 //			
-//			organismsMap.put(1, organism);
+//			
+//			for (int i = 0; i < board.getRow(); i++) {
+//				for (int j = 0; j < board.getRow(); j++) {
+////					organismsMap.put(i, new Dirt (1, true));
+//					organismsMap.put(i * 10 + j, organisms[i][j]);
+//				}
+//			}	 
+//			
+//		request.setAttribute("organisms", organismsMap);
+//		request.getRequestDispatcher(VIEW).forward(request, response);
+			
+			Map <String, Organism> organismsMap = new LinkedHashMap <>();
 			
 			for (int i = 0; i < board.getRow(); i++) {
 				for (int j = 0; j < board.getRow(); j++) {
 //					organismsMap.put(i, new Dirt (1, true));
-					organismsMap.put(i * 10 + j, organisms[i][j]);
+					organismsMap.put("organism row-" + i + " col-" + j, organisms[i][j]);
 				}
-			}
-//			request.setAttribute("organism", organismsMap);
-//			request.getRequestDispatcher(VIEW).forward(request, response);
+			}	 
 			
 		request.setAttribute("organisms", organismsMap);
 		request.getRequestDispatcher(VIEW).forward(request, response);
+			
+			
+			
 	}
 
 //    @Override

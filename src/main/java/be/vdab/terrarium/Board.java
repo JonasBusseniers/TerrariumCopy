@@ -19,6 +19,7 @@ public class Board {
 	private Organism[][] organisms = new Organism[ROW][COL];
 	private Organism[][] organismsTemp = new Organism[ROW][COL];
 	private int aantalOrganism = 0;
+	private int aantalDagen = 0;
 
 	public void setOrganisms(Organism[][] organisms) {
 		for (int i = 0; i < organisms.length; i++) {
@@ -110,6 +111,7 @@ public class Board {
 					}
 				}
 			}
+			aantalDagen++;
 		}
 		// Merge organisms and organismsTemp
 		for (int i = 0; i < organisms.length; i++) {
@@ -238,5 +240,8 @@ public class Board {
 	public int getColumn () {
 		return organisms[0].length;
 	} 
+	public int getAantalDagen(){
+		return aantalDagen;
+	}
 
 }
