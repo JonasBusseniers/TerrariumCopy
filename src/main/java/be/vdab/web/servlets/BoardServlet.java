@@ -136,7 +136,7 @@ public class BoardServlet extends HttpServlet {
     			board.nextDay();
     		} catch (BoardException ex)
     		{
-    			request.setAttribute("exception", ex);
+    			session.setAttribute("exception", "Het terrarium is vol");
     		}
     		session.setAttribute("board", board);
     		response.sendRedirect(request.getRequestURI());

@@ -67,10 +67,14 @@
     </div>
 </div>
 
-<div id="msg">${exception}ghj</div>  <!-- toon fouten hier -->
-<form method='post'>
-<input id="NextDay" type="submit" value="Next day.">
-</form>
+	<c:if test='${empty exception}'>
+		<form method='post'>
+		<input id="NextDay" type="submit" value="Next day.">
+		</form>
+	</c:if>
+
+	<div id="msg">${exception}</div>  <!-- toon fouten hier -->
+
 
 <div id="piechart"></div>
 
