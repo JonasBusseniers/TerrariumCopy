@@ -47,7 +47,7 @@
     <div class="raster">
 		<c:forEach var='organism' items='${organisms}'>
 				<div class='${organism.key}'>  
-					<img src = '<c:url value="${organism.value.url}"/>' />
+					<img src = '<c:url value="${organism.value.url}"/>'/>
 					${organism.value.life}
 				</div>
 		</c:forEach>		
@@ -55,8 +55,10 @@
     </div>
 </div>
 
-<div id="msg"></div>  <!-- toon fouten hier -->
+<div id="msg">${exception}</div>  <!-- toon fouten hier -->
+<form method='post'>
 <input id="NextDay" type="submit" value="Next day.">
+</form>
 
 <div id="piechart"></div>
 
