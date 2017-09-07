@@ -1,4 +1,4 @@
-<%@page contentType='text/html' pageEncoding='UTF-8' session="false"%>
+<%@page contentType='text/html' pageEncoding='UTF-8'%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -41,12 +41,12 @@
   <c:param name='new' value='1'/>
 </c:url>
 
-<a href='${new_random_game_url}'>New random game</a>
+<a href='${new_random_game_url}'><fmt:message key='newRandomGame'/></a>
 
 <c:url value='/custom.htm' var='new_custom_game_url'/>
 <a href='${new_custom_game_url}'><fmt:message key='newCustomGame'/></a>
 
-<c:if test='${not empty terrarium}'>
+<c:if test='${not empty board}'>
   <c:url value='/board.htm' var='current_game_url'/>
   <a href='${current_game_url}'><fmt:message key='currentGame'/></a>
 </c:if>

@@ -17,10 +17,10 @@
         function drawChart() {
             var data = google.visualization.arrayToDataTable([
                 ['Organism', 'Number'],
-                ['Dirt', ${numberDirt}],
-                ['Carnivores', ${numberCarn}],
-                ['Herbivores', ${numberHerb}],
-                ['Plants', ${numberPlant}] ]);
+                ['<fmt:message key="dirt"/>', ${numberDirt}],
+                ['<fmt:message key="carnivore"/>', ${numberCarn}],
+                ['<fmt:message key="herbivore"/>', ${numberHerb}],
+                ['<fmt:message key="plant"/>', ${numberPlant}] ]);
 
             var options = {
                 is3D: true,

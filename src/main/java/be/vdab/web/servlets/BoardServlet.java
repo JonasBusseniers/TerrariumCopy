@@ -35,9 +35,14 @@ public class BoardServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SpecifiedAmountsTerrariumGenerator generator = new SpecifiedAmountsTerrariumGenerator();
 		HttpSession session= request.getSession(false);
+		
+		System.out.print("doGet");
+		
     	if (session.getAttribute("board") == null) {
     		
+    		
     		session= request.getSession();
+    		
 			generator.setSize(6, 6);
 			generator.setAmountForType(Plant.class, 2);
 			generator.setAmountForType(Herbivore.class, 3);
@@ -124,8 +129,10 @@ public class BoardServlet extends HttpServlet {
 
     @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	HttpSession session= request.getSession(false);
-    	if (session != null) {
+    	HttpSession session= request.getSession();
+    	
+    	System.out.println("dd");
+    	
     		Board board = (Board) session.getAttribute("board");
     		try {
     			board.nextDay();
@@ -133,8 +140,9 @@ public class BoardServlet extends HttpServlet {
     		{
     			request.setAttribute("exception", ex);
     		}
+    		session.setAttribute("board", board);
     		response.sendRedirect(request.getRequestURI());
-    	}
+
     	
 	}
 
