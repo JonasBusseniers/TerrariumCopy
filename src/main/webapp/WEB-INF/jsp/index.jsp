@@ -29,6 +29,15 @@
   <c:url value='/board.htm' var='current_game_url'/>
   <a href='${current_game_url}'>Current game</a>
 </c:if>
+<p><fmt:message key='theOrganisms'/></p>
+<div class='imagesIndex'>
+  <p><fmt:message key='plant'/></p>
+  <img src='/images/plant.png'/>
+  <p><fmt:message key='herbivore'/></p>
+  <img src='/images/herbivore.png'/>
+  <p><fmt:message key='carnivore'/></p>
+  <img src='/images/carnivore.png'/>
+</div>
 <p><fmt:message key='theRules'/></p>
 <ul>
   <li><fmt:message key='rule1'/></li>
