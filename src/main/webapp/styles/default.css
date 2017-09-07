@@ -1,6 +1,6 @@
 /* Body */
 body {
-    background-color: #FFFFDE;
+    background: url("../images/sand.jpg");
     color: #5A0000;
     font-family: sans-serif;
 }
@@ -15,6 +15,40 @@ h2{
 }
 a{
     color: green;
+}
+a:hover{
+    color: darkgreen;
+}
+p{
+
+}
+label{
+    display: block;
+    margin: 0.5em;
+}
+input[type=submit] {
+    display: inline-block;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    cursor: pointer;
+    padding: 10px 20px;
+    border: 1px solid #018dc4;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+    font: normal 16px/normal "Times New Roman", Times, serif;
+    color: rgba(255,255,255,0.9);
+    -o-text-overflow: clip;
+    text-overflow: clip;
+    background: -webkit-linear-gradient(-48.36646066342979deg, rgba(0,79,9,1) 0, rgba(9,249,4,0.8) 100%);
+    background: -moz-linear-gradient(138.3664606634298deg, rgba(0,79,9,1) 0, rgba(9,249,4,0.8) 100%);
+    background: linear-gradient(138.3664606634298deg, rgba(0,79,9,1) 0, rgba(9,249,4,0.8) 100%);
+    background-position: 50% 50%;
+    background-origin: padding-box;
+    background-clip: border-box;
+    background-size: auto auto;
+    -webkit-box-shadow: 5px 5px 4px 0 rgba(0,255,0,0.5) ;
+    box-shadow: 5px 5px 4px 0 rgba(0,255,0,0.5) ;
 }
 
 /* Menu */
@@ -51,9 +85,12 @@ footer{
     padding-top: 1.5em;
 }
 footer p {
-    border: 1px solid green;
+    border: 2px solid green;
     padding: 0.2em;
     display: inline-block;
+    color: black;
+    font-weight: bolder;
+    font-size: 0.8em;
 }
 
 /*Terrarium raster
