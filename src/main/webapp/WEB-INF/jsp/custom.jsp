@@ -17,14 +17,14 @@
 
 <div id="msg">${fouten.number}</div>
 <form method="post">
-<label><span class="text"><fmt:message key='rows'/>Rows (6-10)</span><input type="number" min="6" max="10" value="${empty param.rows ? 6 : param.rows}" name="rows" step="1" required></label>
-<label><span class="text"><fmt:message key='cols'/>Columns (6-10)</span><input type="number" min="6" max="10" value="${empty param.cols ? 6 : param.cols}" name="cols" step="1" required></label>
+<label><span class="text"><fmt:message key='rows'/> (6-10)</span><input type="number" min="6" max="10" value="${empty param.rows ? 6 : param.rows}" name="rows" step="1" required></label>
+<label><span class="text"><fmt:message key='cols'/> (6-10)</span><input type="number" min="6" max="10" value="${empty param.cols ? 6 : param.cols}" name="cols" step="1" required></label>
 <br>
-<label><span class="text"><fmt:message key='plantsStart' />Plants at start</span><input type="number" value="${empty param.plantsstart ? 3 : param.plantsstart}" min="0" step="1" name="plantsstart"><span class="error">${fouten.boardIsFull}</span></label>
-<label><span class="text"><fmt:message key='herbivoresStart'/>Herbivores at start</span><input type="number"value="${empty param.herbivoresstart ? 3 : param.herbivoresstart}" min="0" step="1" name="herbivoresstart"><span class="error">${fouten.boardIsFull}</span></label>
-<label><span class="text"><fmt:message key='carnivoresStart' />Carnivores at start</span><input type="number"value="${empty param.carnivoresstart ? 3 : param.carnivoresstart}" min="0" step="1" name="carnivoresstart"><span class="error">${fouten.boardIsFull}</span></label>
+<label><span class="text"><fmt:message key='plantsStart' /></span><input type="number" value="${empty param.plantsstart ? 3 : param.plantsstart}" min="0" step="1" name="plantsstart"><span class="error">${fouten.boardIsFull}</span></label>
+<label><span class="text"><fmt:message key='herbivoresStart'/></span><input type="number"value="${empty param.herbivoresstart ? 3 : param.herbivoresstart}" min="0" step="1" name="herbivoresstart"><span class="error">${fouten.boardIsFull}</span></label>
+<label><span class="text"><fmt:message key='carnivoresStart' /></span><input type="number"value="${empty param.carnivoresstart ? 3 : param.carnivoresstart}" min="0" step="1" name="carnivoresstart"><span class="error">${fouten.boardIsFull}</span></label>
 <br>
-<label><span class="text"><fmt:message key='plantsEveryDay' />Plants every day (0-5)</span><input type="number"value="${empty param.plantseveryday ? 1 : param.plantseveryday}" min="0" max="5" step="1" name="plantseveryday"></label>
+<label><span class="text"><fmt:message key='plantsEveryDay' /> (0-5)</span><input type="number"value="${empty param.plantseveryday ? 1 : param.plantseveryday}" min="0" max="5" step="1" name="plantseveryday"></label>
 <input type="submit" name="play" value="Pay">
 </form>
 
