@@ -3,6 +3,7 @@ package be.vdab.entities;
 public abstract class Organism {
     
     int life;
+    int lifespan = 0;
     boolean hasActed;
     String url;
     
@@ -19,6 +20,17 @@ public abstract class Organism {
     public void setLife(int life) {
         this.life = life;
     }
+    
+    public int getLifespan() {
+		return lifespan;
+	}
+
+	public void setLifespan(int lifespan) {
+		this.lifespan = lifespan;
+	}
+	public void incrementLifespan() {
+		this.lifespan++;
+	}
 
     public boolean isHasActed() {
         return hasActed;
@@ -26,6 +38,5 @@ public abstract class Organism {
 
     public void setHasActed(boolean hasActed) {
         this.hasActed = hasActed;
-    }
-    
+    }    
 }

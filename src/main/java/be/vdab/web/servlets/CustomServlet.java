@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import be.vdab.entities.Carnivore;
 import be.vdab.entities.Herbivore;
+import be.vdab.entities.Omnivore;
 import be.vdab.entities.Plant;
 import be.vdab.terrarium.Board;
 import be.vdab.terrarium.util.SpecifiedAmountsTerrariumGenerator;
@@ -43,6 +44,9 @@ public class CustomServlet extends HttpServlet {
 		int carnivoresStart = 3;
 		int carnivoresMinLife = 0;
 		int carnivoresMaxLife = 10;
+		int omnivoresStart = 3;
+		int omnivoresMinLife = 0;
+		int omnivoresMaxLife = 10;
 		int plantsEveryDay = 1;
 		try {
 			rows = Integer.parseInt(request.getParameter("rows"));
@@ -54,13 +58,17 @@ public class CustomServlet extends HttpServlet {
 			carnivoresStart = Integer.parseInt(request.getParameter("carnivoresstart"));
 			carnivoresMinLife = Integer.parseInt(request.getParameter("carnivoresminlife"));
 			carnivoresMaxLife = Integer.parseInt(request.getParameter("carnivoresmaxlife"));
+			omnivoresStart = Integer.parseInt(request.getParameter("omnivoresstart"));
+			omnivoresMinLife = Integer.parseInt(request.getParameter("omnivoresminlife"));
+			omnivoresMaxLife = Integer.parseInt(request.getParameter("omnivoresmaxlife"));
 			plantsEveryDay = Integer.parseInt(request.getParameter("plantseveryday"));
-			int organismsStart = plantsStart + herbivoresStart + carnivoresStart;
+			int organismsStart = plantsStart + herbivoresStart + carnivoresStart + omnivoresStart;
 			int boardSize = rows * cols;
 
 			if (rows < 6 || rows > 10 || cols < 6 || cols > 10 || plantsEveryDay < 0 || plantsEveryDay > 5
-					|| plantsStart < 0 || herbivoresStart < 0 || carnivoresStart < 0 || herbivoresMinLife < 0
-					|| herbivoresMaxLife < 0 || carnivoresMinLife < 0 || carnivoresMaxLife < 0) {
+					|| plantsStart < 0 || herbivoresStart < 0 || carnivoresStart < 0 || omnivoresStart < 0
+					|| herbivoresMinLife < 0 || herbivoresMaxLife < 0 || carnivoresMinLife < 0 || carnivoresMaxLife < 0
+					|| omnivoresMinLife < 0 || omnivoresMaxLife < 0 ){
 				fouten.put("number", "numberNotAccepted");
 			} else if (organismsStart > boardSize) {
 				fouten.put("boardIsFull", "boardFull");
@@ -73,6 +81,9 @@ public class CustomServlet extends HttpServlet {
 			if (carnivoresMinLife > carnivoresMaxLife) {
 				fouten.put("carnMinMax", "minLargerMax");
 			}
+			if (omnivoresMinLife > omnivoresMaxLife) {
+				fouten.put("omnMinMax", "minLargerMax");
+			}
 
 		} catch (NumberFormatException ex) {
 			fouten.put("number", "notANumber");
@@ -84,9 +95,11 @@ public class CustomServlet extends HttpServlet {
 			generator.setAmountForType(Plant.class, plantsStart);
 			generator.setAmountForType(Herbivore.class, herbivoresStart);
 			generator.setAmountForType(Carnivore.class, carnivoresStart);
+			generator.setAmountForType(Omnivore.class, omnivoresStart);
 			generator.setLifeForceRangeForType(Plant.class, 1, 1);
 			generator.setLifeForceRangeForType(Herbivore.class, herbivoresMinLife, herbivoresMaxLife);
 			generator.setLifeForceRangeForType(Carnivore.class, carnivoresMinLife, carnivoresMaxLife);
+			generator.setLifeForceRangeForType(Omnivore.class, omnivoresMinLife, omnivoresMaxLife);
 			Board board = new Board();
 			board.setOrganisms(generator.generateTerrarium());
 			board.setAantalPlantenPerBeurt(plantsEveryDay);

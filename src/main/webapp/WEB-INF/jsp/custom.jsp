@@ -35,6 +35,11 @@
 <label><span class="text"><fmt:message key='minLife'/></span><input type="number"value="${empty param.carnivoresminlife ? 0 : param.carnivoresminlife}" min="0" step="1" name="carnivoresminlife" required><span class="error"><c:if test='${not empty fouten.carnMinMax}'><fmt:message key='${fouten.carnMinMax}' /></c:if></span></label>
 <label><span class="text"><fmt:message key='maxLife'/></span><input type="number"value="${empty param.carnivoresmaxlife ? 10 : param.carnivoresmaxlife}" min="0" step="1" name="carnivoresmaxlife" required><span class="error"><c:if test='${not empty fouten.carnMinMax}'><fmt:message key='${fouten.carnMinMax}' /></c:if></span></label>
 <br>
+<h3><fmt:message key='omnivores' /></h3>
+<label><span class="text"><fmt:message key='numberStart' /></span><input type="number"value="${empty param.omnivoresstart ? 3 : param.omnivoresstart}" min="0" step="1" name="omnivoresstart" required><span class="error"><c:if test='${not empty fouten.boardIsFull}'><fmt:message key='${fouten.boardIsFull}'><fmt:param value='${fouten.organismsStart}' /><fmt:param value='${fouten.boardSize}'/></fmt:message></c:if></span></label>
+<label><span class="text"><fmt:message key='minLife'/></span><input type="number"value="${empty param.omnivoresminlife ? 0 : param.omnivoresiminlife}" min="0" step="1" name="omnivoresminlife" required><span class="error"><c:if test='${not empty fouten.omnMinMax}'><fmt:message key='${fouten.omnMinMax}' /></c:if></span></label>
+<label><span class="text"><fmt:message key='maxLife'/></span><input type="number"value="${empty param.omnivoresmaxlife ? 10 : param.omnivoresmaxlife}" min="0" step="1" name="omnivoresmaxlife" required><span class="error"><c:if test='${not empty fouten.omnMinMax}'><fmt:message key='${fouten.omnMinMax}' /></c:if></span></label>
+<br>
 <input type="submit" name="play" value="<fmt:message key='play' />" id="customSubmit">
 </form>
 
