@@ -21,6 +21,7 @@ public class Board {
 	private int aantalOrganism = 0;
 	private int aantalDagen = 0;
 	private String exception;
+	private int maxAgePlant = 5;
 
 	public void setOrganisms(Organism[][] organisms) {
 		for (int i = 0; i < organisms.length; i++) {
@@ -89,27 +90,47 @@ public class Board {
 				if (organisms[i][j] instanceof Organism) {
 					if (!organisms[i][j].isHasActed()) {
 						// No Actions performed.. DO ACTION
+
 						organisms[i][j].setHasActed(true);
 						if (organisms[i][j] instanceof Herbivore) {
 							if ((j == organisms[i].length - 1) || (organisms[i][j + 1] == null)
-									|| organisms[i][j + 1] instanceof Carnivore) // vermijdt
+									|| organisms[i][j + 1] instanceof Carnivore
+									|| organisms[i][j + 1] instanceof Omnivore) // vermijdt
 							// ArrayIndexOutOfBoundsException
 							{
 								move(i, j);
 							} else if (organisms[i][j + 1] instanceof Plant) {
 								eat(i, j, i, j + 1);
 							} else if (organisms[i][j + 1] instanceof Herbivore) {
-								mate();
+								mate(organisms[i][j]);
 							}
 						} else if (organisms[i][j] instanceof Carnivore) {
 							if ((j == organisms[i].length - 1) || (organisms[i][j + 1] == null)
 									|| organisms[i][j + 1] instanceof Plant) {
 								move(i, j);
-							} else if (organisms[i][j + 1] instanceof Carnivore) {
+							} else if (organisms[i][j + 1] instanceof Carnivore
+									|| organisms[i][j + 1] instanceof Omnivore) {
 								fight(i, j);
 							} else if (organisms[i][j + 1] instanceof Herbivore) {
 								eat(i, j, i, j + 1);
 							}
+						} else if (organisms[i][j] instanceof Omnivore) {
+							if ((j == organisms[i].length - 1) || (organisms[i][j + 1] == null)) {
+								move(i, j);
+							} else if (organisms[i][j + 1] instanceof Carnivore) {
+								fight(i, j);
+							} else if (organisms[i][j + 1] instanceof Herbivore
+									|| organisms[i][j + 1] instanceof Plant) {
+								eat(i, j, i, j + 1);
+							} else if (organisms[i][j + 1] instanceof Omnivore) {
+								mate(organisms[i][j]);
+							}
+
+						}
+						organisms[i][j].incrementLifespan();
+
+						if (organisms[i][j] instanceof Plant && organisms[i][j].getLifespan() > maxAgePlant) {
+							organisms[i][j] = null;
 						}
 					}
 				}
@@ -136,7 +157,7 @@ public class Board {
 
 	}
 
-	protected void mate() throws BoardException {
+	protected void mate(Organism organism) throws BoardException {
 
 		if (aantalOrganism < organisms[0].length * organisms.length) {
 			int x;
@@ -145,7 +166,14 @@ public class Board {
 				x = (int) (Math.random() * organisms[0].length);
 				y = (int) (Math.random() * organisms.length);
 			} while (!isEmptyPosition(x, y));
-			organismsTemp[x][y] = new Herbivore(0, true);
+			if (organism instanceof Herbivore) {
+				organismsTemp[x][y] = new Herbivore(0, true);
+			} else if (organism instanceof Omnivore) {
+				organismsTemp[x][y] = new Omnivore(0, true);
+			} else {
+				throw new IllegalArgumentException("This type of organism is not made to mate");
+			}
+
 			aantalOrganism++;
 		} else {
 			throw new BoardException("Organism overload!");
@@ -255,6 +283,14 @@ public class Board {
 
 	public String getException() {
 		return exception;
+	}
+
+	public int getMaxAgePlant() {
+		return maxAgePlant;
+	}
+
+	public void setMaxAgePlant(int maxAgePlant) {
+		this.maxAgePlant = maxAgePlant;
 	}
 
 }
