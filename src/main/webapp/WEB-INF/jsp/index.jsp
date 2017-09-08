@@ -18,14 +18,22 @@
 
 <p><fmt:message key='theOrganisms'/></p>
 <div class='imagesIndex'>
-  <p><fmt:message key='plant'/></p>
-  <img src='<c:url value='/images/plant.png'/>'/>
-  <p><fmt:message key='herbivore'/></p>
-  <img src='<c:url value='/images/herbivore.png'/>'/>
-  <p><fmt:message key='carnivore'/></p>
-  <img src='<c:url value='/images/carnivore.png'/>'/>
-  <p><fmt:message key='omnivore'/></p>
-  <img src='<c:url value='/images/omnivore.png'/>'/>
+  <div class='imageContainer'>
+    <img src='<c:url value='/images/plant.png'/>'/>
+    <p><fmt:message key='plant'/></p>
+  </div>
+  <div class='imageContainer'>
+    <img src='<c:url value='/images/herbivore.png'/>'/>
+    <p><fmt:message key='herbivore'/></p>
+  </div>
+  <div class='imageContainer'>
+    <img src='<c:url value='/images/carnivore.png'/>'/>
+    <p><fmt:message key='carnivore'/></p>
+  </div>
+  <div class='imageContainer'>
+    <img src='<c:url value='/images/omnivore.png'/>'/>
+    <p><fmt:message key='omnivore'/></p>
+  </div>
 </div>
 <p><fmt:message key='theRules'/></p>
 <ul>

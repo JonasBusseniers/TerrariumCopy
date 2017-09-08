@@ -233,11 +233,26 @@ container flexbox */
 }
 
 /*Index page*/
+.imagesIndex{
+	overflow: auto;
+}
+.imageContainer{
+	float: left;
+	margin: 15px;
+}
 .imagesIndex img{
-    display: inline;
     width: 6.25em;
     height: 6.25em;
 }
-.imagesIndex p{
-    display: inline;
+.imageContainer{
+	float: left;
+	margin: 15px;
 }
+.imagesIndex p{
+	text-align: center;
+}
+
+
+
+
+
