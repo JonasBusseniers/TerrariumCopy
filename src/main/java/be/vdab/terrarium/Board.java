@@ -20,6 +20,7 @@ public class Board {
 	private Organism[][] organismsTemp = new Organism[ROW][COL];
 	private int aantalOrganism = 0;
 	private int aantalDagen = 0;
+	private String exception;
 
 	public void setOrganisms(Organism[][] organisms) {
 		for (int i = 0; i < organisms.length; i++) {
@@ -245,6 +246,15 @@ public class Board {
 
 	public int getAantalDagen() {
 		return aantalDagen;
+	}
+
+	public void setException(String exception) {
+		this.exception = exception;
+
+	}
+
+	public String getException() {
+		return exception;
 	}
 
 }
