@@ -131,6 +131,7 @@ public class Board {
 
 						if (organisms[i][j] instanceof Plant && organisms[i][j].getLifespan() > maxAgePlant) {
 							organisms[i][j] = null;
+							aantalOrganism--;
 						}
 					}
 				}
