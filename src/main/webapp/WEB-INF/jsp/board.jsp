@@ -56,13 +56,11 @@
 						</c:if>
 						
 						<c:if test="${not empty organism}" >
+							<div class="lifespanBol">${organism.lifespan}</div>
 							<div class="lifeBol">${organism.life}</div>
 						</c:if>
-						
-						<c:if test="${not empty organism}" >
-							<div class="lifespanBol">${organism.lifespan}</div>
-						</c:if>
-						
+		
+		
 					</div>
 			</c:forEach>
 			</div></c:forEach>		
