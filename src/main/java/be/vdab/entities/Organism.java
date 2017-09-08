@@ -28,6 +28,9 @@ public abstract class Organism {
 	public void setLifespan(int lifespan) {
 		this.lifespan = lifespan;
 	}
+	public void incrementLifespan() {
+		this.lifespan++;
+	}
 
     public boolean isHasActed() {
         return hasActed;
