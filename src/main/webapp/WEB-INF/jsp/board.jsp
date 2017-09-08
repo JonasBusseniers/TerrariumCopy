@@ -51,33 +51,32 @@
 <div class="container">
 	 	<div class="raster">
 			<c:forEach var='rows' items='${organisms}'>
-			<div class="row">
-			<c:forEach var='organism' items='${rows}'>
-					<div class="cell">  
-						
-						<c:if test='${not empty organism.url}'>
-							<img src = '<c:url value="${organism.url}"/>' />
-						</c:if>
-						
-						<c:if test='${empty organism.url}'>
-							<img src = '<c:url value="images/dirt.png"/>' />
-						</c:if>
-						
-						<c:if test="${not empty organism}" >
-							<div class="lifespanBol">${organism.lifespan}</div>
-							<div class="lifeBol">${organism.life}</div>
-						</c:if>
-		
-		
-					</div>
+        <div class="row">
+          <c:forEach var='organism' items='${rows}'>
+              <div class="cell">
+
+                <c:if test='${not empty organism.url}'>
+                  <img src = '<c:url value="${organism.url}"/>' />
+                </c:if>
+
+                <c:if test='${empty organism.url}'>
+                  <img src = '<c:url value="images/dirt.png"/>' />
+                </c:if>
+
+                <c:if test="${not empty organism}" >
+                  <div class="lifespanBol">${organism.lifespan}</div>
+                  <div class="lifeBol">${organism.life}</div>
+                </c:if>
+
+
+              </div>
+          </c:forEach>
+			  </div>
 			</c:forEach>
-			</div></c:forEach>		
-	
-	    </div>
-    </div>
+		</div>
 </div>
 
-	<div id="msg">${board.exception}</div>  <!-- toon fouten hier -->
+<div id="msg">${board.exception}</div>  <!-- toon fouten hier -->
 
 <script language="JavaScript">
     document.getElementsById(nextDayForm).onSubmit = function () {
