@@ -47,7 +47,10 @@
 		<input id="NextDay" type="submit" value="<fmt:message key='nextDay'/>">
 	</form>
 </c:if>
-<div id="msg">${board.exception}</div>  <!-- toon fouten hier -->
+<c:if test='${not empty board.exception}'>
+	<div id="msg"><fmt:message key='${board.exception}'/></div>  <!-- toon fouten hier -->
+</c:if>
+
 
 <div class="container">
 	 	<div class="raster">
