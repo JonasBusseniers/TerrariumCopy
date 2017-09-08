@@ -48,7 +48,7 @@ public class BoardServlet extends HttpServlet {
 			generator.setLifeForceRangeForType(Carnivore.class, 0, 10);
 			generator.setAmountForType(Omnivore.class, 2);
 			generator.setLifeForceRangeForType(Omnivore.class, 0, 10);
-			
+
 			board = new Board();
 
 			board.setOrganisms(generator.generateTerrarium());
@@ -86,9 +86,6 @@ public class BoardServlet extends HttpServlet {
 				}
 			}
 
-			
-			
-			
 			request.setAttribute("numberDays", board.getAantalDagen());
 			request.setAttribute("numberHerb", aantalHerbivore);
 			request.setAttribute("numberPlant", aantalPlanten);
@@ -106,7 +103,7 @@ public class BoardServlet extends HttpServlet {
 			Organism[][] organisms = board.getOrganisms().clone();
 			int aantalPlanten = 0, aantalHerbivore = 0, aantalCarnivore = 0;
 			int aantalOmnivore = 0;
-			
+
 			for (int i = 0; i < organisms.length; i++) {
 				for (int j = 0; j < organisms[0].length; j++) {
 					if (organisms[i][j] != null) {
@@ -127,8 +124,7 @@ public class BoardServlet extends HttpServlet {
 					}
 				}
 			}
-			
-			
+
 			// TerrariumRenderer renderer = new
 			// TerrariumRenderer(board.getOrganisms());
 			// renderer.render();
@@ -150,12 +146,14 @@ public class BoardServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		Board board = (Board) session.getAttribute("board");
-		try {
-			board.nextDay();
-		} catch (BoardException ex) {
-			board.setException("Het terrarium is vol");
+		if (board != null) {
+			try {
+				board.nextDay();
+			} catch (BoardException ex) {
+				board.setException("Het terrarium is vol");
+			}
+			session.setAttribute("board", board);
 		}
-		session.setAttribute("board", board);
 		response.sendRedirect(request.getRequestURI());
 
 	}
