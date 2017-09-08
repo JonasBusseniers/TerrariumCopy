@@ -71,7 +71,7 @@
 
 	<c:if test='${empty board.exception}'>
 		<form method='post' id="nextDayForm">
-		<input id="NextDay" type="submit" value="Next day.">
+		<input id="NextDay" type="submit" value="<fmt:message key='nextDay'/>">
 		</form>
 	</c:if>
 
