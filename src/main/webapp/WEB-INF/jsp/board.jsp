@@ -19,7 +19,6 @@
                 ['Organism', 'Number'],
                 ['<fmt:message key="carnivore"/>', ${numberCarn}],
                 ['<fmt:message key="herbivore"/>', ${numberHerb}],
-                ['<fmt:message key="omnivore"/>', ${numberOmni}],
                 ['<fmt:message key="plant"/>', ${numberPlant}] ]);
 
             var options = {
@@ -40,7 +39,13 @@
 <vdab:menu/>
 
 <h1>${titel}</h1>
-<div id="Days">${numberDays}</div>
+<div id="<fmt:message key='day'/>">${numberDays}</div>
+<c:if test='${empty board.exception}'>
+	<form method='post' id="nextDayForm">
+		<input id="NextDay" type="submit" value="<fmt:message key='nextDay'/>">
+	</form>
+</c:if>
+
 <div class="container">
 	 	<div class="raster">
 			<c:forEach var='rows' items='${organisms}'>
@@ -69,12 +74,6 @@
 	    </div>
     </div>
 </div>
-
-	<c:if test='${empty board.exception}'>
-		<form method='post' id="nextDayForm">
-		<input id="NextDay" type="submit" value="<fmt:message key='nextDay'/>">
-		</form>
-	</c:if>
 
 	<div id="msg">${board.exception}</div>  <!-- toon fouten hier -->
 
