@@ -37,6 +37,11 @@
   <li><fmt:message key='rule6'/></li>
   <li><fmt:message key='rule7'/></li>
   <li><fmt:message key='rule8'/></li>
+  <li><fmt:message key='rule9'/></li>
+  <li><fmt:message key='rule10'/></li>
+  <li><fmt:message key='rule11'/></li>
+  <li><fmt:message key='rule12'/></li>
+  <li><fmt:message key='rule13'/></li>
 </ul>
 
 <c:url value='/board.htm' var='new_random_game_url'>
