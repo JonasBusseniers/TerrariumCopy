@@ -89,7 +89,7 @@ public class BoardServlet extends HttpServlet {
 			
 			
 			
-			request.setAttribute("numberDays", "Day: " + board.getAantalDagen());
+			request.setAttribute("numberDays", board.getAantalDagen());
 			request.setAttribute("numberHerb", aantalHerbivore);
 			request.setAttribute("numberPlant", aantalPlanten);
 			request.setAttribute("numberCarn", aantalCarnivore);
