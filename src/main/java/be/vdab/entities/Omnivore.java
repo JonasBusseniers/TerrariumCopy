@@ -11,6 +11,7 @@ public class Omnivore extends Organism {
 	@Override
     public String toString() {
         return "Omni";
+        
     }
 
 	public String getUrl() {
