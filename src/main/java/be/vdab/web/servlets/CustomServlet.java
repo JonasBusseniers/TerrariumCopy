@@ -48,6 +48,7 @@ public class CustomServlet extends HttpServlet {
 		int omnivoresMinLife = 0;
 		int omnivoresMaxLife = 10;
 		int plantsEveryDay = 1;
+		int plantsLifeSpan = 5;
 		try {
 			rows = Integer.parseInt(request.getParameter("rows"));
 			cols = Integer.parseInt(request.getParameter("cols"));
@@ -62,13 +63,14 @@ public class CustomServlet extends HttpServlet {
 			omnivoresMinLife = Integer.parseInt(request.getParameter("omnivoresminlife"));
 			omnivoresMaxLife = Integer.parseInt(request.getParameter("omnivoresmaxlife"));
 			plantsEveryDay = Integer.parseInt(request.getParameter("plantseveryday"));
+			plantsLifeSpan = Integer.parseInt(request.getParameter("plantslifespan"));
 			int organismsStart = plantsStart + herbivoresStart + carnivoresStart + omnivoresStart;
 			int boardSize = rows * cols;
 
 			if (rows < 6 || rows > 10 || cols < 6 || cols > 10 || plantsEveryDay < 0 || plantsEveryDay > 5
 					|| plantsStart < 0 || herbivoresStart < 0 || carnivoresStart < 0 || omnivoresStart < 0
 					|| herbivoresMinLife < 0 || herbivoresMaxLife < 0 || carnivoresMinLife < 0 || carnivoresMaxLife < 0
-					|| omnivoresMinLife < 0 || omnivoresMaxLife < 0 ){
+					|| omnivoresMinLife < 0 || omnivoresMaxLife < 0 || plantsLifeSpan < 0 || plantsLifeSpan > 100) {
 				fouten.put("number", "numberNotAccepted");
 			} else if (organismsStart > boardSize) {
 				fouten.put("boardIsFull", "boardFull");
@@ -103,6 +105,7 @@ public class CustomServlet extends HttpServlet {
 			Board board = new Board();
 			board.setOrganisms(generator.generateTerrarium());
 			board.setAantalPlantenPerBeurt(plantsEveryDay);
+			board.setMaxAgePlant(plantsLifeSpan);
 
 			HttpSession session = request.getSession();
 			session.setAttribute("board", board);

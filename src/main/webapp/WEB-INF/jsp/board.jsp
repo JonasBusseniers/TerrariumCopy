@@ -47,6 +47,7 @@
 		<input id="NextDay" type="submit" value="<fmt:message key='nextDay'/>">
 	</form>
 </c:if>
+<div id="msg">${board.exception}</div>  <!-- toon fouten hier -->
 
 <div class="container">
 	 	<div class="raster">
@@ -76,7 +77,7 @@
 		</div>
 </div>
 
-<div id="msg">${board.exception}</div>  <!-- toon fouten hier -->
+
 
 <script language="JavaScript">
     document.getElementsById(nextDayForm).onSubmit = function () {
