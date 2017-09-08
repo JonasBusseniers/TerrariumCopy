@@ -61,8 +61,6 @@ public class Board {
 
 	public void nextDay() throws BoardException {
 
-		System.out.println("next");
-
 		// Set all HasActed on false
 		for (int i = 0; i < organisms.length; i++) {
 			for (int j = 0; j < organisms[i].length; j++) {
@@ -93,10 +91,6 @@ public class Board {
 						// No Actions performed.. DO ACTION
 
 						organisms[i][j].incrementLifespan();
-
-						if (organisms[i][j] instanceof Plant && organisms[i][j].getLifespan() > maxAgePlant) {
-							organisms[i][j] = null;
-						}
 
 						organisms[i][j].setHasActed(true);
 						if (organisms[i][j] instanceof Herbivore) {
@@ -135,6 +129,9 @@ public class Board {
 
 						}
 
+						if (organisms[i][j] instanceof Plant && organisms[i][j].getLifespan() > maxAgePlant) {
+							organisms[i][j] = null;
+						}
 					}
 				}
 			}
