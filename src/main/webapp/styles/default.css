@@ -44,7 +44,7 @@ input[type=submit] {
     background-size: auto auto;
     -webkit-box-shadow: 5px 5px 4px 0 rgba(0,255,0,0.5) ;
     box-shadow: 5px 5px 4px 0 rgba(0,255,0,0.5) ;
-    width: 50px;
+    width: 80px;
 }
 input {
     display: inline-block;
