@@ -92,6 +92,12 @@ public class Board {
 					if (!organisms[i][j].isHasActed()) {
 						// No Actions performed.. DO ACTION
 
+						organisms[i][j].incrementLifespan();
+
+						if (organisms[i][j] instanceof Plant && organisms[i][j].getLifespan() > maxAgePlant) {
+							organisms[i][j] = null;
+						}
+
 						organisms[i][j].setHasActed(true);
 						if (organisms[i][j] instanceof Herbivore) {
 							if ((j == organisms[i].length - 1) || (organisms[i][j + 1] == null)
@@ -128,11 +134,7 @@ public class Board {
 							}
 
 						}
-						organisms[i][j].incrementLifespan();
 
-						if (organisms[i][j] instanceof Plant && organisms[i][j].getLifespan() > maxAgePlant) {
-							organisms[i][j] = null;
-						}
 					}
 				}
 			}
