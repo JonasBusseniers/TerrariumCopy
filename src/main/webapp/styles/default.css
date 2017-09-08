@@ -150,6 +150,7 @@ container flexbox */
     font-size: 1.5em;
     color: darkblue;
     font-weight: bolder;
+    display: inline-block;
 }
 .container {
     margin: 1em;
@@ -240,4 +241,12 @@ container flexbox */
 }
 .imagesIndex p{
     display: inline;
+}
+
+#piechart {
+    display: inline-block;
+}
+
+.container {
+    display: inline-block;
 }
