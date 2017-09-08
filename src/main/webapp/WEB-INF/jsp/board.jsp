@@ -60,6 +60,7 @@
 							<div class="lifeBol">${organism.life}</div>
 						</c:if>
 		
+		
 					</div>
 			</c:forEach>
 			</div></c:forEach>		
