@@ -163,9 +163,14 @@ public class Board {
 		if (aantalOrganism < organisms[0].length * organisms.length) {
 			int x;
 			int y;
+			int maxTries = 50;
 			do {
 				x = (int) (Math.random() * organisms[0].length);
 				y = (int) (Math.random() * organisms.length);
+				maxTries--;
+				if (maxTries == 0) {
+					throw new BoardException("Organism overload!");
+				}
 			} while (!isEmptyPosition(x, y));
 			if (organism instanceof Herbivore) {
 				organismsTemp[x][y] = new Herbivore(0, true);
