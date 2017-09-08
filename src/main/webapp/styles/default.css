@@ -195,6 +195,23 @@ container flexbox */
     min-width: 1em;
     min-height: 1em;
 }
+.raster .lifespanBol {
+    margin-top: 0;
+    margin-right: 0;
+    border: 1px solid blue;
+    border-radius: 50%;
+    float: left;
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    z-index: 1000;
+    color: white;
+    background-color: blue;
+    font-weight: bold;
+    text-align: center;
+    min-width: 1em;
+    min-height: 1em;
+}
 .cell img{
     width: 6.25em;
     height: 6.25em;
