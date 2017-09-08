@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import be.vdab.entities.Carnivore;
 import be.vdab.entities.Herbivore;
+import be.vdab.entities.Omnivore;
 import be.vdab.entities.Organism;
 import be.vdab.entities.Plant;
 import be.vdab.terrarium.Board;
@@ -45,7 +46,9 @@ public class BoardServlet extends HttpServlet {
 			generator.setLifeForceRangeForType(Plant.class, 1, 1);
 			generator.setLifeForceRangeForType(Herbivore.class, 0, 10);
 			generator.setLifeForceRangeForType(Carnivore.class, 0, 10);
-
+			generator.setAmountForType(Omnivore.class, 2);
+			generator.setLifeForceRangeForType(Omnivore.class, 0, 10);
+			
 			board = new Board();
 
 			board.setOrganisms(generator.generateTerrarium());
@@ -60,6 +63,7 @@ public class BoardServlet extends HttpServlet {
 			Organism[][] organismsTemp = board.getOrganisms().clone();
 
 			int aantalPlanten = 0, aantalHerbivore = 0, aantalCarnivore = 0;
+			int aantalOmnivore = 0;
 
 			for (int i = 0; i < organismsTemp.length; i++) {
 				for (int j = 0; j < organismsTemp[0].length; j++) {
@@ -74,15 +78,22 @@ public class BoardServlet extends HttpServlet {
 						case "Carn":
 							aantalCarnivore++;
 							break;
+						case "Omni":
+							aantalOmnivore++;
+							break;
 						}
 					}
 				}
 			}
 
+			
+			
+			
 			request.setAttribute("numberDays", "Day: " + board.getAantalDagen());
 			request.setAttribute("numberHerb", aantalHerbivore);
 			request.setAttribute("numberPlant", aantalPlanten);
 			request.setAttribute("numberCarn", aantalCarnivore);
+			request.setAttribute("numberOmni", aantalOmnivore);
 			request.setAttribute("organisms", organismsTemp);
 
 			session.setAttribute("board", board);
@@ -94,7 +105,8 @@ public class BoardServlet extends HttpServlet {
 
 			Organism[][] organisms = board.getOrganisms().clone();
 			int aantalPlanten = 0, aantalHerbivore = 0, aantalCarnivore = 0;
-
+			int aantalOmnivore = 0;
+			
 			for (int i = 0; i < organisms.length; i++) {
 				for (int j = 0; j < organisms[0].length; j++) {
 					if (organisms[i][j] != null) {
@@ -108,11 +120,15 @@ public class BoardServlet extends HttpServlet {
 						case "Carn":
 							aantalCarnivore++;
 							break;
-
+						case "Omni":
+							aantalOmnivore++;
+							break;
 						}
 					}
 				}
 			}
+			
+			
 			// TerrariumRenderer renderer = new
 			// TerrariumRenderer(board.getOrganisms());
 			// renderer.render();
@@ -121,7 +137,7 @@ public class BoardServlet extends HttpServlet {
 			request.setAttribute("numberPlant", aantalPlanten);
 			request.setAttribute("numberCarn", aantalCarnivore);
 			request.setAttribute("organisms", organisms);
-
+			request.setAttribute("numberOmni", aantalOmnivore);
 			session.setAttribute("board", board);
 			request.setAttribute("new", "");
 			request.getRequestDispatcher(VIEW).forward(request, response);
