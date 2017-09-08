@@ -67,13 +67,13 @@
     </div>
 </div>
 
-	<c:if test='${empty exception}'>
+	<c:if test='${empty board.exception}'>
 		<form method='post' id="nextDayForm">
 		<input id="NextDay" type="submit" value="Next day.">
 		</form>
 	</c:if>
 
-	<div id="msg">${exception}</div>  <!-- toon fouten hier -->
+	<div id="msg">${board.exception}</div>  <!-- toon fouten hier -->
 
 <script language="JavaScript">
     document.getElementsById(nextDayForm).onSubmit = function () {
