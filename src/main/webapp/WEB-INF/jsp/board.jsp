@@ -39,7 +39,8 @@
 <vdab:menu/>
 
 <h1>${titel}</h1>
-<div id="<fmt:message key='day'/>">${numberDays}</div>
+
+<div id="Days"><fmt:message key='day'/>: ${numberDays}</div>
 <c:if test='${empty board.exception}'>
 	<form method='post' id="nextDayForm">
 		<input id="NextDay" type="submit" value="<fmt:message key='nextDay'/>">
