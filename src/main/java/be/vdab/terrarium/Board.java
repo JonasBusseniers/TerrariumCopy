@@ -8,6 +8,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import be.vdab.entities.Carnivore;
 import be.vdab.entities.Herbivore;
+import be.vdab.entities.Omnivore;
 import be.vdab.entities.Organism;
 import be.vdab.entities.Plant;
 
