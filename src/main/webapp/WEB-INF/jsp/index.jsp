@@ -24,6 +24,8 @@
   <img src='<c:url value='/images/herbivore.png'/>'/>
   <p><fmt:message key='carnivore'/></p>
   <img src='<c:url value='/images/carnivore.png'/>'/>
+  <p><fmt:message key='omnivore'/></p>
+  <img src='<c:url value='/images/omnivore.png'/>'/>
 </div>
 <p><fmt:message key='theRules'/></p>
 <ul>
