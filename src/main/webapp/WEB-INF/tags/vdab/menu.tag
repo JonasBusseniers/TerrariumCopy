@@ -12,5 +12,6 @@
             </c:if>
             <li><a href="<c:url value="/board.htm?new=1"/>"><fmt:message key='newRandomGame'/></a></li>
             <li><a href="<c:url value="/custom.htm"/>"><fmt:message key='newCustomGame'/></a></li>
+        </ul>
     </nav>
 </header>
