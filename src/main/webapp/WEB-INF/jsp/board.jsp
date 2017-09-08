@@ -19,6 +19,7 @@
                 ['Organism', 'Number'],
                 ['<fmt:message key="carnivore"/>', ${numberCarn}],
                 ['<fmt:message key="herbivore"/>', ${numberHerb}],
+                ['<fmt:message key="omnivore"/>', ${numberOmni}],
                 ['<fmt:message key="plant"/>', ${numberPlant}] ]);
 
             var options = {
